@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'partials/_account_edit_nav.html' %}
+<section class="section-account-list">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                {% if 'experience' in request.path %}
+                {{ item.company }}
+                <a href="{% url 'experience_create' user_id=request.user.id %}" class="btn btn-success float-right">Add Experience</a>
+                {% elif 'education' in request.path %}
+                {{ item.school }}
+                <a href="{% url 'education_create' user_id=request.user.id %}" class="btn btn-success float-right">Add Education</a>
+                {% elif 'skill' in request.path %}
+                {{ item.name }}
+                <a href="{% url 'skill_create' user_id=request.user.id %}" class="btn btn-success float-right">Add Skill</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-group">
+                    {% for item in list_group %}
+                    <li class="list-group-item">
+                        {% if 'experience' in request.path %}
+                            {{ item.company }}
+                            <a href="{% url 'experience_edit' user_id=request.user.id experience_id=item.id %}" class="btn-sm btn-success float-right">Edit</a>
+                        {% elif 'education' in request.path %}
+                            {{ item.school }}
+                            <a href="{% url 'education_edit' user_id=request.user.id education_id=item.id %}" class="btn-sm btn-success float-right">Edit</a>
+                        {% elif 'skill' in request.path %}
+                            {{ item.name }}
+                            <a href="{% url 'skill_edit' user_id=request.user.id skill_id=item.id %}" class="btn-sm btn-success float-right">Edit</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% include 'partials/_account_edit_nav.html' %}
+
+<section class="section-about">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-12 col-md-2">
+                <div class="text-center">
+                    <img src="{{ profile.user_img.url }}" alt="{{ profile.user_img.name }}" class="rounded profile-img">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-10">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a href="{% url 'about' data_type='me' %}" class="nav-link active">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">EXPERIENCE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">EDUCATION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">SKILLS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        {% if 'me' in request.path %}
+        <h4>About Me:</h4>
+        {% endif %}
+        {{ data }}
+    </div>
+</section>
+
+{% endblock %}

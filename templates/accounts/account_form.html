@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'partials/_account_edit_nav.html' %}
+
+<section class="section-profile-edit">
+    <div class="jumbotron">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group row">
+                <div class="col-md-2">
+                    {{field.label}}
+                </div>
+                <div class="col-md-10">
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success float-right">Save</button>
+        </form>
+    </div>
+</section>
+
+{% endblock  %}

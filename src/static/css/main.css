@@ -3,5 +3,34 @@
 }
 
 .card {
-    background-color: #eee;
+    background-color: #efe;
+}
+
+.section-about .jumbotron,
+.section-account-list .jumbotron {
+    padding: 2rem 1rem !important;
+    margin-bottom: 10px !important;
+}
+
+.account-nav-buttons{
+    margin-bottom: 10px;
+}
+
+.section-about .nav {
+    margin-top: 65px;
+}
+
+.section-about .nav a {
+    cursor: pointer;
+}
+
+.section-account-list .row {
+    margin-bottom: 10px;
+}
+
+.profile-img {
+    height: 175px;
+    height: 175px;
+    border-radius: 50% !important;
+    border: 2px solid white;
 }
