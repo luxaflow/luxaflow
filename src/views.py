@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
-from accounts.models import Profile
+from accounts.models import Profile, Experience, Education, Skill
 from django.contrib.auth.models import User
 import json
 
@@ -13,6 +13,12 @@ def about(request, data_type):
 
     if data_type == 'me':
         data = profile.about
+    elif data_type == 'experience':
+        data = Experience.objects.all().filter(profile=profile).order_by('-from_date')
+    elif data_type == 'education':
+        data = Education.objects.all().filter(profile=profile).order_by('-from_date')
+    elif data_type == 'skill':
+        data = Skill.objects.all().order_by('is_language')
 
     context = {
         'profile': profile,

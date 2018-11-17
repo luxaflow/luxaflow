@@ -17,6 +17,7 @@ class Profile(models.Model):
 class Experience(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     company = models.CharField(max_length=200)
+    job_title = models.CharField(max_length=200, blank=True)
     from_date = models.DateField()
     till_date = models.DateField(blank=True, null=True)
     description = models.TextField()
@@ -27,6 +28,7 @@ class Experience(models.Model):
 class Education(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     school = models.CharField(max_length=200)
+    level = models.CharField(max_length=200, blank=True)
     from_date = models.DateField()
     till_date = models.DateField(blank=True, null=True)
     completed = models.BooleanField(default=True)

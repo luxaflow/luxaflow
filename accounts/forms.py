@@ -33,15 +33,17 @@ class ProfileModelForm(forms.ModelForm):
 class ExperienceModelForm(forms.ModelForm):
     class Meta():
         model = Experience
-        fields = ('company', 'from_date', 'till_date', 'description',)
+        fields = ('company', 'job_title','from_date', 'till_date', 'description',)
         widgets = {
             'company': forms.TextInput(attrs={'class': 'form-control'}),
+            'job_title': forms.TextInput(attrs={'class': 'form-control'}),
             'from_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'till_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10})
         }
         labels = {
             'company': _('Company name:'),
+            'job_title': _('Job Title:'),
             'from_date': _('From:'),
             'till_date': _('Till:'),
             'description': _('Description:')
@@ -51,9 +53,10 @@ class ExperienceModelForm(forms.ModelForm):
 class EducationModelForm(forms.ModelForm):
     class Meta():
         model = Education
-        fields = ('school', 'from_date', 'till_date', 'description', 'completed',)
+        fields = ('school', 'level', 'from_date', 'till_date', 'description', 'completed',)
         widgets = {
             'school': forms.TextInput(attrs={'class': 'form-control'}),
+            'level': forms.TextInput(attrs={'class': 'form-control'}),
             'from_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'till_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'completed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
@@ -61,6 +64,7 @@ class EducationModelForm(forms.ModelForm):
         }
         labels = {
             'school': _('School:'),
+            'level': _('Level:'),
             'from_date': _('From:'),
             'till_date': _('Till:'),
             'description': _('Description:'),

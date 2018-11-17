@@ -3,8 +3,6 @@
 
 {% block content %}
 
-{% include 'partials/_account_edit_nav.html' %}
-
 <section class="section-about">
     <div class="jumbotron">
         <div class="row">
@@ -16,27 +14,87 @@
             <div class="col-sm-12 col-md-10">
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a href="{% url 'about' data_type='me' %}" class="nav-link active">ABOUT</a>
+                        <a href="{% url 'about' data_type='me' %}" class="nav-link {% if 'me' in request.path %}active{% endif %}">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">EXPERIENCE</a>
+                        <a href="{% url 'about' data_type='experience' %}" class="nav-link {% if 'experience' in request.path %}active{% endif %}">EXPERIENCE</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">EDUCATION</a>
+                        <a href="{% url 'about' data_type='education' %}" class="nav-link {% if 'education' in request.path %}active{% endif %}">EDUCATION</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">SKILLS</a>
+                        <a href="{% url 'about' data_type='skill' %}" class="nav-link {% if 'skill' in request.path %}active{% endif %}">SKILLS</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="jumbotron">
-        {% if 'me' in request.path %}
-        <h4>About Me:</h4>
-        {% endif %}
-        {{ data }}
-    </div>
+    {% if 'me' in request.path %}
+        <div class="jumbotron">
+            {{ data|linebreaks }}
+        </div>
+    {% elif 'experience' in request.path %}
+        {% for item in data %}
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ item.company }}</h4>
+                    <h6>{{ item.job_title }}</h6>
+                    <small>{{item.from_date|date:"m/Y"}} - {% if item.till_date%}{{ item.till_date|date:'d/Y' }}{% else %}Current{% endif %}</small>
+                    <p>{{ item.description|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% elif 'education' in request.path %}
+        {% for item in data %}
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ item.school }}</h4>
+                    <h6>{{ item.level }}</h6>
+                    <small>{{item.from_date|date:"m/Y"}} - {% if item.till_date%}{{ item.till_date|date:'d/Y' }}{% else %}Current{% endif %}</small>
+                    <p>{{ item.description|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% elif 'skill in request.path' %}
+        {% for item in data %}
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="float-left">{{item.name}}</h5>
+                        <div class="float-right">
+                        {% if item.scale == 1 %}
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                        {% elif item.scale == 2 %}
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                        {% elif item.scale == 3 %}
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                        {% elif item.scale == 4 %}
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                        {% elif item.scale == 5 %}
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                            <i class="fas fa-star fa-2x text-warning"></i>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+        
+    
 </section>
 
 {% endblock %}
