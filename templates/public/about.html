@@ -6,12 +6,25 @@
 <section class="section-about">
     <div class="jumbotron">
         <div class="row">
-            <div class="col-sm-12 col-md-2">
+            <div class="col-sm-8 col-md-2">
                 <div class="text-center">
                     <img src="{{ profile.user_img.url }}" alt="{{ profile.user_img.name }}" class="rounded profile-img">
                 </div>
             </div>
-            <div class="col-sm-12 col-md-10">
+            <div class="col-sm-4 col-md-1">
+                <ul class="about-links">
+                    <li>
+                        <a href="https://www.linkedin.com/in/lucaswolfe/"><i class="fab fa-linkedin fa-2x text-secondary"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.github.com/luxaflow"></a><i class="fab fa-github-square fa-2x text-secondary"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.stackoverflow.com/users/8935364/lucas-wolfe"></a> <i class="fab fa-stack-overflow fa-2x text-secondary"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-12 col-md-8 offset-md-1">
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
                         <a href="{% url 'about' data_type='me' %}" class="nav-link {% if 'me' in request.path %}active{% endif %}">ABOUT</a>
@@ -38,7 +51,7 @@
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>{{ item.company }}</h4>
+                    <h4>{{ item.name }}</h4>
                     <h6>{{ item.job_title }}</h6>
                     <small>{{item.from_date|date:"m/Y"}} - {% if item.till_date%}{{ item.till_date|date:'d/Y' }}{% else %}Current{% endif %}</small>
                     <p>{{ item.description|linebreaks }}</p>
@@ -51,7 +64,7 @@
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>{{ item.school }}</h4>
+                    <h4>{{ item.name }}</h4>
                     <h6>{{ item.level }}</h6>
                     <small>{{item.from_date|date:"m/Y"}} - {% if item.till_date%}{{ item.till_date|date:'d/Y' }}{% else %}Current{% endif %}</small>
                     <p>{{ item.description|linebreaks }}</p>
@@ -60,41 +73,166 @@
         </div>
         {% endfor %}
     {% elif 'skill in request.path' %}
-        {% for item in data %}
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="float-left">{{item.name}}</h5>
+    <div class="jumbotron">
+            <table class="table">
+                <tr>
+                    <th scope="col">
+                        <h5><strong>Skills:</strong></h5>
+                    </th>
+                    <th scope="col">
+                        <h5 class="float-right"><strong>Scale 1-5:</strong></h5>
+                    </th>
+                </tr>
+                {% for item in soft_skill %}
+                <tr>
+                    <td>
+                        <h6>{{item.name}}</h6>
+                    </td>
+                    <td>
                         <div class="float-right">
-                        {% if item.scale == 1 %}
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                        {% elif item.scale == 2 %}
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                        {% elif item.scale == 3 %}
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                        {% elif item.scale == 4 %}
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                        {% elif item.scale == 5 %}
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                            <i class="fas fa-star fa-2x text-warning"></i>
-                        {% endif %}
+                            {% if item.scale == 1 %}
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 2 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 3 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 4 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 5 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% endif %}
                         </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-        
-    
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th scope="col">
+                        <h5><strong>Software:</strong></h5>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+                {% for item in software %}
+                <tr>
+                    <td>
+                        <h6>{{item.name}}</h6>
+                    </td>
+                    <td>
+                        <div class="float-right">
+                            {% if item.scale == 1 %}
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 2 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 3 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 4 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 5 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th scope="col">
+                        <h5><strong>Languages:</strong></h5>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+                {% for item in language %}
+                <tr>
+                    <td>
+                        <h6>{{item.name}}</h6>
+                    </td>
+                    <td>
+                        <div class="float-right">
+                            {% if item.scale == 1 %}
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 2 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 3 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 4 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 5 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th scope="col">
+                        <h5><strong>Frameworks:</strong></h5>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+                {% for item in framework %}
+                <tr>
+                    <td>
+                        <h6>{{item.name}}</h6>
+                    </td>
+                    <td>
+                        <div class="float-right">
+                            {% if item.scale == 1 %}
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 2 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 3 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 4 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 5 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}    
 </section>
 
 {% endblock %}

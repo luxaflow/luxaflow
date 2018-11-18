@@ -1,3 +1,13 @@
+.table {
+  table-layout:fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .navbar {
     margin-bottom: 10px;
 }
@@ -6,8 +16,7 @@
     background-color: #efe;
 }
 
-.section-about .jumbotron,
-.section-account-list .jumbotron {
+.jumbotron {
     padding: 1rem 1rem !important;
     margin-bottom: 10px !important;
 }
@@ -20,12 +29,23 @@
     margin-top: 65px;
 }
 
+.section-about .about-links li {
+    list-style-type: none;
+}
+.section-about .about-links {
+    margin-top: 35px;
+}
+
 .section-about .nav a {
     cursor: pointer;
 }
 
 .section-account-list .row {
     margin-bottom: 10px;
+}
+
+.section-account-list .btn-add {
+        width: 145px !important;
 }
 
 .profile-img {

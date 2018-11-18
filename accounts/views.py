@@ -57,6 +57,15 @@ def experience_edit(request, user_id, experience_id):
         return render(request, 'accounts/account_form.html', context)
 
 
+def experience_delete(request, user_id, experience_id):
+    experience = get_object_or_404(Experience, id=experience_id)
+    if experience:
+        experience.delete()
+        return HttpResponseRedirect('/accounts/{0}/experience'.format(user_id))
+    else:
+        return HttpResponseRedirect('/accounts/{0}/experience'.format(user_id))
+
+
 def education_create(request, user_id):
     if request.method == 'POST':
         user = User.objects.get(id=user_id)
@@ -90,6 +99,15 @@ def education_edit(request, user_id, education_id):
         return render(request, 'accounts/account_form.html', context)
 
 
+def education_delete(request, user_id, education_id):
+    education = get_object_or_404(Education, id=education_id)
+    if education:
+        education.delete()
+        return HttpResponseRedirect('/accounts/{0}/education'.format(user_id))
+    else:
+        return HttpResponseRedirect('/accounts/{0}/education'.format(user_id))
+
+
 def skill_create(request, user_id):
     if request.method == 'POST':
         user = User.objects.get(id=user_id)
@@ -121,6 +139,15 @@ def skill_edit(request, user_id, skill_id):
             'form': form
         }
         return render(request, 'accounts/account_form.html', context)
+
+
+def skill_delete(request, user_id, skill_id):
+    skill = get_object_or_404(Skill, id=skill_id)
+    if skill:
+        skill.delete()
+        return HttpResponseRedirect('/accounts/{0}/skill'.format(user_id))
+    else:
+        return HttpResponseRedirect('/accounts/{0}/skill'.format(user_id))
 
 
 def account_list(request, user_id):

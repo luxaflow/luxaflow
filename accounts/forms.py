@@ -33,16 +33,16 @@ class ProfileModelForm(forms.ModelForm):
 class ExperienceModelForm(forms.ModelForm):
     class Meta():
         model = Experience
-        fields = ('company', 'job_title','from_date', 'till_date', 'description',)
+        fields = ('name', 'job_title','from_date', 'till_date', 'description',)
         widgets = {
-            'company': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
             'job_title': forms.TextInput(attrs={'class': 'form-control'}),
             'from_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'till_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10})
         }
         labels = {
-            'company': _('Company name:'),
+            'name': _('Company:'),
             'job_title': _('Job Title:'),
             'from_date': _('From:'),
             'till_date': _('Till:'),
@@ -53,9 +53,9 @@ class ExperienceModelForm(forms.ModelForm):
 class EducationModelForm(forms.ModelForm):
     class Meta():
         model = Education
-        fields = ('school', 'level', 'from_date', 'till_date', 'description', 'completed',)
+        fields = ('name', 'level', 'from_date', 'till_date', 'description', 'completed',)
         widgets = {
-            'school': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
             'level': forms.TextInput(attrs={'class': 'form-control'}),
             'from_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'till_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
@@ -63,7 +63,7 @@ class EducationModelForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10})
         }
         labels = {
-            'school': _('School:'),
+            'name': _('School:'),
             'level': _('Level:'),
             'from_date': _('From:'),
             'till_date': _('Till:'),
@@ -75,16 +75,22 @@ class EducationModelForm(forms.ModelForm):
 class SkillModelForm(forms.ModelForm):
     class Meta():
         model = Skill
-        fields = ('name', 'scale', 'description', 'is_language')
+        fields = ('name', 'scale', 'description', 'language', 'software', 'framework', 'soft_skill')
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'scale': forms.NumberInput(attrs={'class': 'form-control', 'max': 5, 'min': 1}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
-            'is_language': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+            'language': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'framework': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'software': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'soft_skill': forms.CheckboxInput(attrs={'class': 'form-check-input'})
         }
         labels = {
             'name': _('Name:'),
             'scale': _('Scale:'),
             'description': _('Description:'),
-            'is_language': _('Language:')
+            'language': _('Language:'),
+            'software': _('Software:'),
+            'framework': _('Framework:'),
+            'sof_skill': _('Soft Skill:'),
         }
