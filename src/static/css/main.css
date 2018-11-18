@@ -2,10 +2,15 @@
   table-layout:fixed;
 }
 
-.table td {
+.table td,
+.post-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.post-title {
+    padding-bottom: 2px;
 }
 
 .navbar {
@@ -13,7 +18,7 @@
 }
 
 .card {
-    background-color: #efe;
+    margin-bottom: 10px;
 }
 
 .jumbotron {
