@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<section class="section-posts-list">
+    {% for post in posts %}
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h5 class="post-title">{{ post.name }}</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <small class="float-right">{{post.created_at|naturalday}}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+            {{ post.body|linebreaks }}
+            {{ profile.get_full_name }}
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    {% endfor %}
+</section>
+
+{% endblock %}
