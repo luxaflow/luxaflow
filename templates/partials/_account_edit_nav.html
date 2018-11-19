@@ -2,16 +2,16 @@
     <div class="col-md-12">
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
-                <a href="{% url 'account_edit' user_id=request.user.id %}" class="nav-link {% if 'me' in request.path %}active{% endif %}">Me</a>
+                <a href="{% url 'account_edit' %}" class="nav-link {% if request.path == '/accounts/' %}active{% endif %}">Me</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'experience_list' user_id=request.user.id %}" class="nav-link {% if 'experience' in request.path %}active{% endif %}">Experience</a>
+                <a href="{% url 'experience_list' %}" class="nav-link {% if request.path == '/accounts/experience' %}active{% endif %}">Experience</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'education_list' user_id=request.user.id %}" class="nav-link {% if 'education' in request.path %}active{% endif %}">Education</a>
+                <a href="{% url 'education_list' %}" class="nav-link {% if request.path == '/accounts/education' %}active{% endif %}">Education</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'skill_list' user_id=request.user.id %}" class="nav-link {% if 'skill' in request.path %}active{% endif %}">Skills</a>
+                <a href="{% url 'skill_list' %}" class="nav-link {% if 'skill' in request.path %}active{% endif %}">Skills</a>
             </li>
         </ul>
     </div>

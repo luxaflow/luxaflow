@@ -38,9 +38,7 @@ def dashboard(request):
     exclude_post_list = ['skill', 'education', 'experience', 'profile', 'user', 'group']
     recent_action = LogEntry.objects.exclude(content_type__model__in=exclude_action_list).order_by('-action_time')[:10]
     recent_post = LogEntry.objects.exclude(content_type__model__in=exclude_post_list).order_by('-action_time')[:10]
-    print(type(recent_action))
     for item in recent_action:
-        print(type(item))
     context = {
         'recent_action': recent_action,
         'recent_post': recent_post

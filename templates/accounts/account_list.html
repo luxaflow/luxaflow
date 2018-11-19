@@ -9,13 +9,13 @@
             <div class="col-md-12">
                 {% if 'experience' in request.path %}
                 {{ item.name }}
-                <a href="{% url 'experience_create' user_id=request.user.id %}" class="btn btn-success btn-add float-right">Add Experience</a>
+                <a href="{% url 'experience_create' %}" class="btn btn-success btn-add float-right">Add Experience</a>
                 {% elif 'education' in request.path %}
                 {{ item.name }}
-                <a href="{% url 'education_create' user_id=request.user.id %}" class="btn btn-success btn-add float-right">Add Education</a>
+                <a href="{% url 'education_create' %}" class="btn btn-success btn-add float-right">Add Education</a>
                 {% elif 'skill' in request.path %}
                 {{ item.name }}
-                <a href="{% url 'skill_create' user_id=request.user.id %}" class="btn btn-success btn-add float-right">Add Skill</a>
+                <a href="{% url 'skill_create' %}" class="btn btn-success btn-add float-right">Add Skill</a>
                 {% endif %}
             </div>
         </div>
@@ -27,19 +27,19 @@
                         {% if 'experience' in request.path %}
                             {{ item.name }}
                             <div class="float-right">    
-                                <a href="{% url 'experience_edit' user_id=request.user.id experience_id=item.id %}" class="btn-sm btn-success">Edit</a>
+                                <a href="{% url 'experience_edit' experience_id=item.id %}" class="btn-sm btn-success">Edit</a>
                                 <a href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#item-{{ item.id }}">Delete</a>
                             </div>
                         {% elif 'education' in request.path %}
                             {{ item.name }}
                             <div class="float-right">
-                                <a href="{% url 'education_edit' user_id=request.user.id education_id=item.id %}" class="btn-sm btn-success">Edit</a>
+                                <a href="{% url 'education_edit' education_id=item.id %}" class="btn-sm btn-success">Edit</a>
                                 <a href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#item-{{ item.id }}">Delete</a>
                             </div>
                         {% elif 'skill' in request.path %}
                             {{ item.name }}
                             <div class="float-right">
-                                <a href="{% url 'skill_edit' user_id=request.user.id skill_id=item.id %}" class="btn-sm btn-success">Edit</a>
+                                <a href="{% url 'skill_edit' skill_id=item.id %}" class="btn-sm btn-success">Edit</a>
                                 <a href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#item-{{ item.id }}">Delete</a>
                             </div>
                         {% endif %}
@@ -74,11 +74,11 @@
             <div class="modal-footer">
                 <a href="#" class="btn btn-success" data-dismiss="modal">No</a>
                 <a href="{% if 'experience' in request.path %}
-                    {% url 'experience_delete' user_id=request.user.id experience_id=item.id %}
+                    {% url 'experience_delete' experience_id=item.id %}
                 {% elif 'education' in request.path %}
-                    {% url 'education_delete' user_id=request.user.id education_id=item.id %}
+                    {% url 'education_delete' education_id=item.id %}
                 {% elif 'skill' in request.path %}
-                    {% url 'skill_delete' user_id=request.user.id skill_id=item.id %}
+                    {% url 'skill_delete' skill_id=item.id %}
                 {% endif %}" class="btn btn-secondary">Yes</a>
             </div>
         </div>
