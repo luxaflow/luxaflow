@@ -4,21 +4,21 @@
 
 {% include 'partials/_account_edit_nav.html' %}
 <section class="section-account-list">
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-12">
-                {% if 'experience' in request.path %}
-                {{ item.name }}
-                <a href="{% url 'experience_create' %}" class="btn btn-success btn-add float-right">Add Experience</a>
-                {% elif 'education' in request.path %}
-                {{ item.name }}
-                <a href="{% url 'education_create' %}" class="btn btn-success btn-add float-right">Add Education</a>
-                {% elif 'skill' in request.path %}
-                {{ item.name }}
-                <a href="{% url 'skill_create' %}" class="btn btn-success btn-add float-right">Add Skill</a>
-                {% endif %}
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if 'experience' in request.path %}
+            {{ item.name }}
+            <a href="{% url 'experience_create' %}" class="btn btn-success btn-add float-right">Add Experience</a>
+            {% elif 'education' in request.path %}
+            {{ item.name }}
+            <a href="{% url 'education_create' %}" class="btn btn-success btn-add float-right">Add Education</a>
+            {% elif 'skill' in request.path %}
+            {{ item.name }}
+            <a href="{% url 'skill_create' %}" class="btn btn-success btn-add float-right">Add Skill</a>
+            {% endif %}
         </div>
+    </div>
+    <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-group">
