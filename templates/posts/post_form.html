@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-post-form">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="" method="POST" class="form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            {{field.label}}
+                        </div>
+                        <div class="col-md-10">
+                            {{ field }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success float-right">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -9,6 +9,10 @@
   text-overflow: ellipsis;
 }
 
+.row {
+    margin-bottom: 10px;
+}
+
 .post-title {
     padding-bottom: 2px;
 }
@@ -59,4 +63,8 @@
     height: 175px;
     border-radius: 50% !important;
     border: 2px solid white;
+}
+
+.section-posts-list .card .row {
+    margin-bottom: unset !important;
 }

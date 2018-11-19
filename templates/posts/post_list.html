@@ -5,6 +5,13 @@
 {% block content %}
 
 <section class="section-posts-list">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-right">
+                <a href="{% url 'post_create' %}" class="btn btn-success">Add Post</a>
+            </div>
+        </div>
+    </div>
     {% for post in posts %}
         <div class="card">
             <div class="card-header">
@@ -22,7 +29,17 @@
             {{ profile.get_full_name }}
             </div>
             <div class="card-footer text-muted">
-                2 days ago
+                <div class="row">
+                    <div class="col-md-6">
+                        <small>Written by - {{ post.profile.first_name }} {{post.profile.last_name}}</small>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="float-right">
+                            <a href="{% url 'post_delete' post_id=post.id %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'post_edit' post_id=post.id %}" class="btn btn-success">Edit</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
