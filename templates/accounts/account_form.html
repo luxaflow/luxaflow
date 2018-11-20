@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        {% if 'experience' in request.path %}
+        <li class="breadcrumb-item active" aria-current="page">Me</li>
+        <li class="breadcrumb-item active" aria-current="page">Experience</li>
+        {% elif 'education' in request.path %}
+        <li class="breadcrumb-item active" aria-current="page">Me</li>
+        <li class="breadcrumb-item active" aria-current="page">Education</li>
+        {% elif 'skill' in request.path %}
+        <li class="breadcrumb-item active" aria-current="page">Me</li>
+        <li class="breadcrumb-item active" aria-current="page">Skill</li>
+        {% else %}
+        <li class="breadcrumb-item active" aria-current="page">Me</li>
+        {% endif %}
+</ol>
+{% endblock %}
+
 {% block content %}
 
-{% include 'partials/_account_edit_nav.html' %}
+{% if not 'edit' in request.path and not 'create' in request.path %}
+    {% include 'partials/_account_edit_nav.html' %}
+{% endif %}
 
 <section class="section-profile-edit">
     <div class="jumbotron">

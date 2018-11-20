@@ -33,6 +33,14 @@ section .row {
     margin-bottom: 10px;
 }
 
+.breadcrumb-nav {
+    background-color: #e9ecef;
+}
+
+.breadcrumb-nav .breadcrumb {
+    padding: .15rem 0rem;
+}
+
 .primary-overlay {
     background: rgba(85, 141, 194, 0.45);
     position: absolute;

@@ -18,6 +18,14 @@
 
 {% if request.path == '/' %}
     {% include 'partials/_index_banner.html' %}
+{% else %}
+<nav class="breadcrumb-nav">
+    <div class="container">
+        {% block breadcrumb %}
+
+        {% endblock %}
+    </div>
+</nav>
 {% endif %}
 
 <div class="container">
@@ -25,8 +33,6 @@
 
     {% endblock %}
 </div>
-
-
 
 <footer class="footer bg-primary">
     <div class="container">
