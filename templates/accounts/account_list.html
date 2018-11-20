@@ -3,7 +3,18 @@
 {% block breadcrumb %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    {% if 'accounts' in request.path %}
+        <li class="breadcrumb-item active" aria-current="page">Account</li>
+        {% if 'experience' in request.path %}
+            <li class="breadcrumb-item active" aria-current="page">Experience</li>
+        {% elif 'education' in request.path %}
+            <li class="breadcrumb-item active" aria-current="page">Education</li>
+        {% elif 'skill' in request.path %}
+            <li class="breadcrumb-item active" aria-current="page">Skill</li>
+        {% endif %}
+    {% else %}
     <li class="breadcrumb-item active" aria-current="page">About</li>
+    {% endif %}
 </ol>
 {% endblock %}
 

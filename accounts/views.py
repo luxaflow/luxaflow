@@ -64,7 +64,8 @@ def experience_edit(request,  experience_id):
     else:
         form = ExperienceModelForm(instance=experience)
         context = {
-            'form': form
+            'form': form,
+            'experience': experience
         }
         return render(request, 'accounts/account_form.html', context)
 
@@ -103,7 +104,8 @@ def education_edit(request, education_id):
     else:
         form = EducationModelForm(instance=education)
         context = {
-            'form': form
+            'form': form,
+            'education': education
         }
         return render(request, 'accounts/account_form.html', context)
 
@@ -142,7 +144,8 @@ def skill_edit(request, skill_id):
     else:
         form = SkillModelForm(instance=skill)
         context = {
-            'form': form
+            'form': form,
+            'skill': skill
         }
         return render(request, 'accounts/account_form.html', context)
 

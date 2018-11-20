@@ -3,18 +3,42 @@
 {% block breadcrumb %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-        {% if 'experience' in request.path %}
-        <li class="breadcrumb-item active" aria-current="page">Me</li>
-        <li class="breadcrumb-item active" aria-current="page">Experience</li>
-        {% elif 'education' in request.path %}
-        <li class="breadcrumb-item active" aria-current="page">Me</li>
-        <li class="breadcrumb-item active" aria-current="page">Education</li>
-        {% elif 'skill' in request.path %}
-        <li class="breadcrumb-item active" aria-current="page">Me</li>
-        <li class="breadcrumb-item active" aria-current="page">Skill</li>
+    {% if request.path == '/accounts/' %}
+        <li class="breadcrumb-item active" aria-current="page">Account</li>
+    {% else %}
+        <li class="breadcrumb-item"><a href="{% url 'account_edit' %}">Account</a></li>
+    {% endif %}
+    {% if 'experience' in request.path %}
+        {% if 'edit' in request.path %}
+            <li class="breadcrumb-item"><a href="{% url 'experience_list' %}">Experience</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ experience.name }}</li>
+        {% elif 'create' in request.path %}
+            <li class="breadcrumb-item"><a href="{% url 'experience_list' %}">Experience</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
         {% else %}
-        <li class="breadcrumb-item active" aria-current="page">Me</li>
+            <li class="breadcrumb-item active" aria-current="page">Experience</li>
         {% endif %}
+    {% elif 'education' in request.path %}
+        {% if 'edit' in request.path %}
+            <li class="breadcrumb-item"><a href="{% url 'education_list' %}">Education</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ education.name }}</li>
+        {% elif 'create' in request.path %}
+            <li class="breadcrumb-item"><a href="{% url 'education_list' %}">Education</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
+        {% else %}
+            <li class="breadcrumb-item active" aria-current="page">Education</li>
+        {% endif %}
+    {% elif 'skill' in request.path %}
+        {% if 'edit' in request.path %}
+            <li class="breadcrumb-item"><a href="{% url 'skill_list' %}">Skill</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ skill.name }}</li>
+        {% elif 'create' in request.path %}
+        <li class="breadcrumb-item"><a href="{% url 'skill_list' %}">Skill</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create</li>
+        {% else %}
+            <li class="breadcrumb-item active" aria-current="page">Skill</li>
+        {% endif %}
+    {% endif %}
 </ol>
 {% endblock %}
 
