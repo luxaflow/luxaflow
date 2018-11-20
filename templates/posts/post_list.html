@@ -5,6 +5,7 @@
 {% block content %}
 
 <section class="section-posts-list">
+    {% if request.user.id == posts.0.profile.user.id %}
     <div class="row">
         <div class="col-md-12">
             <div class="float-right">
@@ -12,6 +13,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     {% for post in posts %}
         <div class="card">
             <div class="card-header">
@@ -19,9 +21,15 @@
                     <div class="col-md-9">
                         <h5 class="post-title">{{ post.name }}</h5>
                     </div>
+                    {% if request.user.id == post.profile.user.id %}
                     <div class="col-md-3">
-                        <small class="float-right">{{post.created_at|naturalday}}</small>
+                        <div class="float-right">
+                            <a href="{% url 'post_delete' post_id=post.id %}" class="btn-sm btn-danger">Delete</a>
+                            <a href="{% url 'post_edit' post_id=post.id %}" class="btn-sm btn-success">Edit</a>
+                        </div>
+                        
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="card-body">
@@ -31,14 +39,13 @@
             <div class="card-footer text-muted">
                 <div class="row">
                     <div class="col-md-6">
-                        <small>Written by - {{ post.profile.first_name }} {{post.profile.last_name}}</small>
+                        <small>Written by - {{ post.profile.get_full_name }}</small>
                     </div>
+                    
                     <div class="col-md-6">
-                        <div class="float-right">
-                            <a href="{% url 'post_delete' post_id=post.id %}" class="btn btn-danger">Delete</a>
-                            <a href="{% url 'post_edit' post_id=post.id %}" class="btn btn-success">Edit</a>
-                        </div>
+                        <small class="float-right">{{post.created_at|naturalday}}</small>
                     </div>
+                    
                 </div>
             </div>
         </div>

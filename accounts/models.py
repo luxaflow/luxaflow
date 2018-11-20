@@ -12,8 +12,11 @@ class Profile(models.Model):
     about = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
     def __str__(self):
         return self.email
+
+    @property
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
 
@@ -27,6 +30,7 @@ class Experience(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -41,6 +45,7 @@ class Education(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
     def __str__(self):
         return self.name
 
@@ -57,5 +62,6 @@ class Skill(models.Model):
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+    
     def __str__(self):
         return self.name

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+    'projects.apps.ProjectsConfig',
 ]
 
 MIDDLEWARE = [

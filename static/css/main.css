@@ -18,10 +18,15 @@ section {
 
 table td,
 .table td,
+.truncate,
 .post-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.carousel {
+    padding: 25px;
 }
 
 section .row {
@@ -137,4 +142,17 @@ section .row {
 .footer table {
     margin-top: 5px;
     width: 100%;
+}
+
+.footer table td{
+    padding-right: 15px;
+}
+
+.section-project-list .project-img {
+    height: 200px;
+    overflow: hidden;
+}
+
+.section-project-list h4 {
+    display: inline;
 }

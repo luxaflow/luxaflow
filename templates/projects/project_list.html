@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-project-list">
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#" class="btn btn-success float-right">Add Project</a>
+        </div>
+    </div>
+    {% endif %}
+    {% for project in projects %}
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4">
+                <a data-toggle="modal" data-target="#modal-project-{{project.id}}">
+                    <img src="{{ project.main_img.url }}" class="project-img">
+                </a>
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <h4 class="truncate project-title">{{ project.name }}</h4>
+                    {% if user.is_authenticated %}
+                    <div class="float-right">
+                        <a href="#" class="btn-sm btn-danger">Delete</a>
+                        <a href="#" class="btn-sm btn-success">Edit</a>
+                    </div>
+                    {% endif %}
+                </div>
+                <p>{{ project.description|linebreaks }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- IMAGE MODALS -->
+{% for project in projects %}
+{% if project.img_1 or project.img_2 or project.img_3 or project.img_4 %}
+<div class="modal" id="modal-project-{{project.id}}" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div id="carousel-project-{{project.id}}" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="{{ project.main_img.url }}" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ project.img_1.url }}" alt="">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel-project-{{project.id}}" role="button" data-slide="prev">
+                    <i class="fas fa-chevron-left fa-4x text-secondary"></i>
+                </a>
+                <a class="carousel-control-next" href="#carousel-project-{{project.id}}" role="button" data-slide="next">
+                    <i class="fas fa-chevron-right fa-4x text-secondary"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

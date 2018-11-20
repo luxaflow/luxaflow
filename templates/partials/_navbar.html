@@ -8,15 +8,18 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="{% url 'about' data_type='me' %}">About</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'post_list' %}">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'project_list' %}">Projects</a>
+            </li>
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-expanded="false">{{user.get_full_name}} <i class="fas fa-caret"></i></a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
                         <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'post_list' %}">Posts</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="{% url 'account_edit' %}">Profile</a>
