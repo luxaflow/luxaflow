@@ -14,16 +14,149 @@
 </head>
 <body>
 
-    {% include 'partials/_navbar.html'%}
-    
+{% include 'partials/_navbar.html'%}
+
+{% if request.path == '/' %}
+    {% include 'partials/_index_banner.html' %}
+{% endif %}
+
+<div class="container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+
+<footer class="footer bg-primary">
     <div class="container">
-        {% block content %}
-
-        {% endblock %}
+        <div class="row">
+            <div class="col-md-2">
+                <h3>LuxaFlow</h3>
+                <ul class="footer-social-links">
+                    <li>
+                        <a href="https://www.linkedin.com/in/lucaswolfe/" target="_blank"><i class="fab fa-linkedin fa-2x text-secondary"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.github.com/luxaflow" target="_blank"><i class="fab fa-github-square fa-2x text-secondary"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.stackoverflow.com/users/8935364/lucas-wolfe" target="_blank"><i class="fab fa-stack-overflow fa-2x text-secondary"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <table class="">
+                    <tr>
+                        <th>
+                            <a href="{% url 'about' data_type='me' %}}" class="text-white">About</a>
+                        </th>
+                        <th>
+                            Latest Posts
+                        </th>
+                        <th>Recent Updates</th>
+                        <th>Projects</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="" class="text-white">Experience</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.0.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">
+                                {{ footer_updates.0.object_repr }}
+                                {% if footer_updates.0.action_flag == 1 %}
+                                <i class="fas fa-plus text-white"></i>
+                                {% elif footer_updates.0.action_flag == 2 %}
+                                <i class="fas fa-pen text-white"></i>
+                                {% elif footer_updates.0.action_flag == 3 %}
+                                <i class="fas fa-minus text-white"></i>
+                                {% endif %}
+                                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="" class="text-white">Education</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.1.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_updates.1.object_repr }}
+                                {% if footer_updates.1.action_flag == 1 %}
+                                <i class="fas fa-plus text-white"></i>
+                                {% elif footer_updates.1.action_flag == 2 %}
+                                <i class="fas fa-pen text-white"></i>
+                                {% elif footer_updates.1.action_flag == 3 %}
+                                <i class="fas fa-minus text-white"></i>
+                                {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="" class="text-white">Skills</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.2.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_updates.2.object_repr }}
+                                {% if footer_updates.2.action_flag == 1 %}
+                                <i class="fas fa-plus text-white"></i>
+                                {% elif footer_updates.2.action_flag == 2 %}
+                                <i class="fas fa-pen text-white"></i>
+                                {% elif footer_updates.2.action_flag == 3 %}
+                                <i class="fas fa-minus text-white"></i>
+                                {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.3.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_updates.3.object_repr }}
+                                {% if footer_updates.3.action_flag == 1 %}
+                                <i class="fas fa-plus text-white"></i>
+                                {% elif footer_updates.3.action_flag == 2 %}
+                                <i class="fas fa-pen text-white"></i>
+                                {% elif footer_updates.3.action_flag == 3 %}
+                                <i class="fas fa-minus text-white"></i>
+                                {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.4.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_updates.4.object_repr }}
+                                {% if footer_updates.4.action_flag == 1 %}
+                                <i class="fas fa-plus text-white"></i>
+                                {% elif footer_updates.4.action_flag == 2 %}
+                                <i class="fas fa-pen text-white"></i>
+                                {% elif footer_updates.4.action_flag == 3 %}
+                                <i class="fas fa-minus text-white"></i>
+                                {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
+</footer>
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

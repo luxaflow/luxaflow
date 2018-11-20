@@ -1,7 +1,22 @@
-.table {
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 0 0 50px;
+    padding-bottom: 220px;
+}
+
+table {
   table-layout:fixed;
 }
 
+section {
+    margin-top: 10px;
+}
+
+table td,
 .table td,
 .post-title {
   white-space: nowrap;
@@ -9,20 +24,41 @@
   text-overflow: ellipsis;
 }
 
-.row {
+section .row {
     margin-bottom: 10px;
+}
+
+.primary-overlay {
+    background: rgba(85, 141, 194, 0.45);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .post-title {
     padding-bottom: 2px;
 }
 
-.navbar {
+.card {
     margin-bottom: 10px;
 }
 
-.card {
-    margin-bottom: 10px;
+.section-index-banner{
+    margin-top: unset !important;
+    min-height: 350px; 
+    background-image: url(../img/athletics-blue-ground-332835.jpg);
+    background-size: cover; 
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 2px solid #007bff;
+}
+
+.section-index-banner h1 {
+    margin-top: 110px;
 }
 
 .jumbotron {
@@ -30,7 +66,13 @@
     margin-bottom: 10px !important;
 }
 
+.section-learning .jumbotron,
+.section-projects .jumbotron {
+    min-height: 100% !important;
+}
+
 .account-nav-buttons{
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -67,4 +109,32 @@
 
 .section-posts-list .card .row {
     margin-bottom: unset !important;
+}
+
+.footer {
+    color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    min-height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.footer .row {
+    padding-top: 15px;
+}
+
+.footer-social-links > li {
+    list-style: none;
+    display: inline-block;
+}
+
+.footer-social-links {
+    padding: 0;
+}
+
+.footer table {
+    margin-top: 5px;
+    width: 100%;
 }

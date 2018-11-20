@@ -2,13 +2,62 @@
 
 {% block content %}
 
-<section class="section-index-banner">
+<section class="section-learning">
+    <div class="jumbotron">
     <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-primary text-center">LuxaFlow Learning Dev</h1>
-                </div>
+        <div class="col-md-6">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi vel officiis laudantium reprehenderit. Maiores temporibus accusantium nam provident repudiandae doloribus reiciendis, laboriosam perspiciatis hic nostrum. Accusantium odit ipsam impedit iure voluptatibus sunt, aspernatur minus repellat sed expedita, odio amet suscipit id quia error doloribus aliquid nobis. Consequuntur impedit mollitia aspernatur!</p>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-group">
+                {% for item in learning %}
+                <li class="list-group-item">
+                    {{ item.name }}
+                    <div class="float-right">
+                        {% if item.scale == 1 %}
+                        <i class="fas fa-star text-warning"></i>
+                        {% elif item.scale == 2 %}
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        {% elif item.scale == 3 %}
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        {% elif item.scale == 4 %}
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        {% elif item.scale == 5 %}
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        {% endif %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section-projects">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Project 1
+                    </li>
+                    <li class="list-group-item">
+                        Project 2
+                    </li>
+                </ul>
+            </div>
+            <div class=" col-md-6">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quo officiis laborum obcaecati sit quisquam labore doloribus enim, saepe molestias.</p>
             </div>
         </div>
     </div>

@@ -75,7 +75,7 @@ class EducationModelForm(forms.ModelForm):
 class SkillModelForm(forms.ModelForm):
     class Meta():
         model = Skill
-        fields = ('name', 'scale', 'description', 'language', 'software', 'framework', 'soft_skill')
+        fields = ('name', 'scale', 'description', 'language', 'software', 'framework', 'soft_skill', 'learning')
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'scale': forms.NumberInput(attrs={'class': 'form-control', 'max': 5, 'min': 1}),
@@ -83,7 +83,8 @@ class SkillModelForm(forms.ModelForm):
             'language': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'framework': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'software': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'soft_skill': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+            'soft_skill': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'learning': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
         labels = {
             'name': _('Name:'),
@@ -92,5 +93,6 @@ class SkillModelForm(forms.ModelForm):
             'language': _('Language:'),
             'software': _('Software:'),
             'framework': _('Framework:'),
-            'sof_skill': _('Soft Skill:'),
+            'soft_skill': _('Soft Skill:'),
+            'learning': _('Currently Learning:'),
         }

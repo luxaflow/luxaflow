@@ -1,12 +1,17 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from accounts.models import Profile, Experience, Education, Skill
+from posts.models import Post
 from django.contrib.auth.models import User
 from django.contrib.admin.models import LogEntry
 import json
 
 
 def index(request):
-    return render(request, 'public/index.html')
+    learning = Skill.objects.filter(learning=True)
+    context = {
+        'learning': learning,
+    }
+    return render(request, 'public/index.html', context)
 
 
 def about(request, data_type):

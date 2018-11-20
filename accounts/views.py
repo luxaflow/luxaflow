@@ -45,7 +45,7 @@ def experience_create(request):
             experience = form.save(commit=False)
             experience.profile = profile
             experience.save()
-            return redirect('accout_list', data_type='experience')
+            return redirect('experience_list')
     else: 
         form = ExperienceModelForm()
         context = {
@@ -60,7 +60,7 @@ def experience_edit(request,  experience_id):
         form = ExperienceModelForm(request.POST, instance=experience)
         if form.is_valid():
             form.save()
-            return redirect('account_list', data_type='experience')
+            return redirect('experience_list')
     else:
         form = ExperienceModelForm(instance=experience)
         context = {
@@ -73,7 +73,7 @@ def experience_delete(request, experience_id):
     experience = get_object_or_404(Experience, id=experience_id)
     if experience:
         experience.delete()
-        return redirect('account_list', data_type='experience')
+        return redirect('experience_list')
 
 
 def education_create(request):
@@ -84,7 +84,7 @@ def education_create(request):
             education = form.save(commit=False)
             education.profile = profile
             education.save()
-            return redirect('account_list', data_type='education')
+            return redirect('education_list')
     else:
         form = EducationModelForm()
         context = {
@@ -99,7 +99,7 @@ def education_edit(request, education_id):
         form = EducationModelForm(request.POST, instance=education)
         if form.is_valid():
             form.save()
-            return redirect('account_list', data_type='education')
+            return redirect('education_list')
     else:
         form = EducationModelForm(instance=education)
         context = {
@@ -112,7 +112,7 @@ def education_delete(request, education_id):
     education = get_object_or_404(Education, id=education_id)
     if education:
         education.delete()
-        return redirect('account_list', data_type='education')
+        return redirect('education_list')
 
 
 def skill_create(request):
@@ -123,7 +123,7 @@ def skill_create(request):
             skill = form.save(commit=False)
             skill.profile = profile
             skill.save()
-            return redirect('account_list', data_type='skill')
+            return redirect('skill_list')
     else:
         form = SkillModelForm()
         context = {
@@ -138,7 +138,7 @@ def skill_edit(request, skill_id):
         form = SkillModelForm(request.POST, instance=skill)
         if form.is_valid():
             form.save()
-            return redirect('account_list', data_type='skill')
+            return redirect('skill_list')
     else:
         form = SkillModelForm(instance=skill)
         context = {
@@ -151,4 +151,4 @@ def skill_delete(request, skill_id):
     skill = get_object_or_404(Skill, id=skill_id)
     if skill:
         skill.delete()
-        return redirect('account_list', data_type='skill')
+        return redirect('skill_list')

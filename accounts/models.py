@@ -53,6 +53,7 @@ class Skill(models.Model):
     software = models.BooleanField(default=False)
     framework = models.BooleanField(default=False)
     soft_skill = models.BooleanField(default=False)
+    learning = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
