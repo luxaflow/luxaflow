@@ -2,6 +2,13 @@
 
 {% load humanize %}
 
+{% block breadcrumb %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+</ol>
+{% endblock %}
+
 {% block content %}
 
 <section class="section-posts-list">

@@ -40,7 +40,8 @@ def post_edit(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     form = PostModelForm(instance=post)
     context = {
-        'form': form
+        'form': form,
+        'post': post
     }
     return render(request, 'posts/post_form.html', context)
 

@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'post_list' %}">Posts</a></li>
+    {% if 'edit' in request.path %}
+    <li class="breadcrumb-item active" aria-current="page">{{ post.name }}</li>
+    {% elif 'create' in request.path %}
+    <li class="breadcrumb-item active" aria-current="page">Create</li>
+    {% endif %}
+</ol>
+{% endblock %}
+
 {% block content %}
 
 <section class="section-post-form">
