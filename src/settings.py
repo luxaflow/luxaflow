@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = ''
+SECRET_KEY = '$k@9_c@gt=b-mkg=+mhvknsh4n69@0z)9-ejiuezunlxz&#o$a'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
