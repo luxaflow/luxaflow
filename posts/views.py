@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from accounts.models import Profile
 from .forms import PostModelForm
@@ -8,16 +9,14 @@ from .forms import PostModelForm
 def post_list(request): 
     posts = Post.objects.all().order_by('-created_at')
     comments = Comment.objects.all().order_by('-created_at')
-    print(posts)
     context = {
         'posts': posts,
         'comments': comments
     }
-    if request.user != None:
-        context.__setitem__('profile', Profile.objects.all().filter(user=request.user.id))
     return render(request, 'posts/post_list.html', context)
 
 
+@login_required
 def post_create(request):
     if request.method == 'POST':
         form = PostModelForm(request.POST or None)
@@ -36,6 +35,7 @@ def post_create(request):
         return render(request, 'posts/post_form.html', context)
 
 
+@login_required
 def post_edit(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     form = PostModelForm(instance=post)
@@ -46,6 +46,7 @@ def post_edit(request, post_id):
     return render(request, 'posts/post_form.html', context)
 
 
+@login_required
 def post_delete(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if post:
