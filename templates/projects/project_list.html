@@ -20,18 +20,22 @@
     {% for project in projects %}
     <div class="jumbotron">
         <div class="row">
+            {% if project.main_img %}
             <div class="col-md-4">
                 <a data-toggle="modal" data-target="#modal-project-{{project.id}}">
                     <img src="{{ project.main_img.url }}" class="project-img">
                 </a>
             </div>
             <div class="col-md-8">
+            {% else %}
+            <div class="col-md-12">
+            {%  endif %}
                 <div>
                     <h4 class="truncate project-title">{{ project.name }}</h4>
                     {% if user.is_authenticated %}
                     <div class="float-right">
-                        <a href="#" class="btn-sm btn-danger">Delete</a>
                         <a href="{% url 'project_edit' project_id=project.id %}" class="btn-sm btn-success">Edit</a>
+                        <a href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#delete-project-{{ project.id }}">Delete</a>
                     </div>
                     {% endif %}
                 </div>
@@ -69,5 +73,33 @@
 </div>
 {% endif %}
 {% endfor %}
+
+
+{% for project in projects %}
+<!-- Delete modals -->
+<div class="modal fade" id="delete-project-{{ project.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are You Sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete {{ project.name }}?                ?
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success" data-dismiss="modal">No</a>
+                <a href="{% url 'project_delete' project_id=project.id %}" class="btn btn-secondary">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
 
 {% endblock %}

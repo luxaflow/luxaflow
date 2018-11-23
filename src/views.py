@@ -3,14 +3,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.models import LogEntry
 from accounts.models import Profile, Experience, Education, Skill
+from projects.models import Project
 from posts.models import Post
 import json
 
 
 def index(request):
     learning = Skill.objects.filter(learning=True)
+    projects = Project.objects.filter(completed=False)
     context = {
         'learning': learning,
+        'projects': projects
     }
     return render(request, 'public/index.html', context)
 

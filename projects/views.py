@@ -49,4 +49,4 @@ def project_delete(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     if project:
         project.delete()
-        return redirect('request_list')
+        return redirect('project_list')
