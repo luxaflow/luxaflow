@@ -5,7 +5,6 @@ from django.contrib.admin.models import LogEntry
 from accounts.models import Profile, Experience, Education, Skill
 from projects.models import Project
 from posts.models import Post
-import json
 
 
 def index(request):
@@ -53,5 +52,6 @@ def dashboard(request):
         'recent_post': recent_post
     }
     return render(request, 'dashboard.html', context)
+
 
 
