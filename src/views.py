@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.models import LogEntry
 from accounts.models import Profile, Experience, Education, Skill
 from posts.models import Post
-from django.contrib.auth.models import User
-from django.contrib.admin.models import LogEntry
 import json
 
 
@@ -38,6 +39,7 @@ def about(request, data_type):
     return render(request, 'public/about.html', context)
 
 
+@login_required
 def dashboard(request):
     exclude_action_list = ['post', 'comment']
     exclude_post_list = ['skill', 'education', 'experience', 'profile', 'user', 'group']
