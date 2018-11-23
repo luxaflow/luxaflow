@@ -14,7 +14,7 @@ def index(request):
         'learning': learning,
         'projects': projects
     }
-    return render(request, 'public/index.html', context)
+    return render(request, 'pages/index.html', context)
 
 
 def about(request, data_type):
@@ -38,7 +38,7 @@ def about(request, data_type):
         context.__setitem__('software', data.filter(software=True))
         context.__setitem__('framework', data.filter(framework=True))
         context.__setitem__('soft_skill', data.filter(soft_skill=True))
-    return render(request, 'public/about.html', context)
+    return render(request, 'pages/about.html', context)
 
 
 @login_required
@@ -51,7 +51,7 @@ def dashboard(request):
         'recent_action': recent_action,
         'recent_post': recent_post
     }
-    return render(request, 'dashboard.html', context)
+    return render(request, 'pages/dashboard.html', context)
 
 
 
