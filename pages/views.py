@@ -33,7 +33,7 @@ def about(request, data_type):
         data = Education.objects.all().filter(profile=profile).order_by('-from_date')
         context.__setitem__('data', data)
     elif data_type == 'skill':
-        data = Skill.objects.all().filter(profile=profile).order_by('-scale')
+        data = Skill.objects.all().filter(profile=profile).order_by('-name')
         context.__setitem__('language', data.filter(language=True))
         context.__setitem__('software', data.filter(software=True))
         context.__setitem__('framework', data.filter(framework=True))
