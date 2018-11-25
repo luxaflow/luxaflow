@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
     <div class="container">
-        <a class="navbar-brand text-white" href="{% url 'index' %}">LuxaFlow</a>
-        <ul class="navbar-nav navbar-right">
+        <a class="navbar-brand text-white desktop-nav" href="{% url 'index' %}">LuxaFlow</a>
+        <ul class="navbar-nav navbar-right desktop-nav">
             <li class="nav-item"></li>
                 <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
             </li>
@@ -16,8 +16,8 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-expanded="false">{{user.get_full_name}} <i class="fas fa-caret"></i></a>
-                <ul class="dropdown-menu" role="menu">
+                <a href="#" class="nav-link dropdown-toggle text-white" id="main-menu" data-toggle="dropdown" role="button" aria-expanded="false">{{user.get_full_name}} <i class="fas fa-caret"></i></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="main-menu">
                     <li>
                         <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
@@ -30,6 +30,6 @@
                 </ul>
             </li>
             {% endif %}
-        </ul>
+        </ul>  
     </div>
 </nav>

@@ -96,7 +96,11 @@
     <div class="container">
         <div class="jumbotron">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-sm-12 col-md-6">
+                    <p>These are the projects I’m currently working on. Apart from this I am also going to college for a degree in Software
+                    development.</p>
+                </div>
+                <div class="col-sm-12 col-md-6">
                     <ul class="list-group">
                         {% for item in projects %}
                         <li class="list-group-item">
@@ -105,10 +109,6 @@
                         {% endfor %}
                     </ul>
                     <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
-                </div>
-                <div class=" col-md-6">
-                    <p>These are the projects I’m currently working on. Apart from this I am also going to college for a degree in Software
-                    development.</p>
                 </div>
             </div>
         </div>

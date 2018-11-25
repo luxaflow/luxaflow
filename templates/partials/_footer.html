@@ -1,37 +1,72 @@
 <footer class="footer bg-primary">
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-sm-12 col-md-2 text-center">
                 <h3>LuxaFlow</h3>
                 <ul class="footer-social-links">
                     <li>
-                        <a href="https://www.linkedin.com/in/lucaswolfe/" target="_blank"><i class="fab fa-linkedin fa-2x text-secondary"></i></a>
+                        <a href="https://www.linkedin.com/in/lucaswolfe/" target="_blank"><i class="fab fa-linkedin fa-2x text-white"></i></a>
                     </li>
                     <li>
-                        <a href="https://www.github.com/luxaflow" target="_blank"><i class="fab fa-github-square fa-2x text-secondary"></i></a>
+                        <a href="https://www.github.com/luxaflow" target="_blank"><i class="fab fa-github-square fa-2x text-white"></i></a>
                     </li>
                     <li>
-                        <a href="https://www.stackoverflow.com/users/8935364/lucas-wolfe" target="_blank"><i class="fab fa-stack-overflow fa-2x text-secondary"></i></a>
+                        <a href="https://www.stackoverflow.com/users/8935364/lucas-wolfe" target="_blank"><i class="fab fa-stack-overflow fa-2x text-white"></i></a>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-10">
-                <table class="">
+            <div class="col-sm-12 col-md-5">
+                <table class="footer-table">
                     <tr>
                         <th>
                             <a href="{% url 'about' data_type='me' %}}" class="text-white">About</a>
                         </th>
                         <th>Latest Posts</th>
-                        <th>Top Skills</th>
-                        <th>Projects</th>
                     </tr>
                     <tr>
                         <td>
-                            <a href="" class="text-white">Experience</a>
+                            <a href="{% url 'about' data_type='experience'  %}" class="text-white">Experience</a>
                         </td>
                         <td>
                             <a href="" class="text-white truncate">{{ footer_posts.0.name }}</a>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{% url 'about' data_type='education' %}" class="text-white">Education</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.1.name }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{% url 'about' data_type='skill' %}" class="text-white">Skills</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.2.name }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.3.name }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_posts.4.name }}</a>
+                        </td>
+                </table class="footer-table">
+            </div>
+            <div class="col-sm-12 col-md-5">
+                <table>
+                    <tr>
+                        <th>Top Skills</th>
+                        <th>Projects</th>
+                    </tr>
+                    <tr>
                         <td>
                             <a href="" class="text-white truncate">{{ footer_skills.0.name }}</a>
                         </td>
@@ -41,12 +76,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="" class="text-white">Education</a>
-                        </td>
-                        <td>
-                            <a href="" class="text-white truncate">{{ footer_posts.1.name }}</a>
-                        </td>
-                        <td>
                             <a href="" class="text-white truncate">{{ footer_skills.1.name }}</a>
                         </td>
                         <td>
@@ -55,12 +84,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="" class="text-white">Skills</a>
-                        </td>
-                        <td>
-                            <a href="" class="text-white truncate">{{ footer_posts.2.name }}</a>
-                        </td>
-                        <td>
                             <a href="" class="text-white truncate">{{ footer_skills.2.name }}</a>
                         </td>
                         <td>
@@ -68,10 +91,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>
-                            <a href="" class="text-white truncate">{{ footer_posts.3.name }}</a>
-                        </td>
                         <td>
                             <a href="" class="text-white truncate">{{ footer_skills.3.name }}</a>
                         </td>
@@ -80,10 +99,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td>
-                            <a href="" class="text-white truncate">{{ footer_posts.4.name }}</a>
-                        </td>
                         <td>
                             <a href="" class="text-white truncate">{{ footer_skills.4.name }}</a>
                         </td>
