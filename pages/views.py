@@ -53,10 +53,3 @@ def dashboard(request):
         'recent_post': recent_post
     }
     return render(request, 'pages/dashboard.html', context)
-
-
-def fetch_learning_detail(request, id):
-    skill = get_object_or_404(Skill, id=id)
-    data = json.dumps(skill)
-    print(data)
-    return HttpResponse(content=json.dumps(skill))
