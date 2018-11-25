@@ -54,7 +54,12 @@ section .row {
 
 .section-projects .btn-projects,
 .section-learning .btn-learning {
-    width: 100%
+    width: 100%;
+    margin-top: 10px;
+}
+
+.section-learning .btn-row {
+    margin-bottom: 0;
 }
 
 .post-title {

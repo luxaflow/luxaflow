@@ -10,7 +10,6 @@
             I have chosen these as Python is a fun language to learn I wanted to build my own website. I also once done would like
             to move my website into a JavaScript framework like Vue, Angular or React. As the end goal is to become a Full Stack
             developer and I think these are good tools to get me going.</p>
-            <a href="{% url 'about' data_type='skill' %}" class="btn btn-secondary btn-learning">Skills</a>
         </div>
         <div class="col-md-6">
             <ul class="list-group">
@@ -43,6 +42,12 @@
                 </li>
                 {% endfor %}
             </ul>
+            <a href="{% url 'about' data_type='skill' %}" class="btn btn-secondary btn-learning">Skills</a>
+        </div>
+    </div>
+    <div class="row btn-row">
+        <div class="col-md-6 offset-md-6">
+            
         </div>
     </div>
 </section>
@@ -58,10 +63,10 @@
                     </li>
                     {% endfor %}
                 </ul>
+                <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
             </div>
             <div class=" col-md-6">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quo officiis laborum obcaecati sit quisquam labore doloribus enim, saepe molestias.</p>
-                <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
             </div>
         </div>
     </div>
