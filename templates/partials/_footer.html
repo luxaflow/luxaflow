@@ -21,10 +21,8 @@
                         <th>
                             <a href="{% url 'about' data_type='me' %}}" class="text-white">About</a>
                         </th>
-                        <th>
-                            Latest Posts
-                        </th>
-                        <th>Recent Updates</th>
+                        <th>Latest Posts</th>
+                        <th>Top Skills</th>
                         <th>Projects</th>
                     </tr>
                     <tr>
@@ -35,16 +33,10 @@
                             <a href="" class="text-white truncate">{{ footer_posts.0.name }}</a>
                         </td>
                         <td>
-                            <a href="" class="text-white truncate">
-                                {{ footer_updates.0.object_repr }}
-                                {% if footer_updates.0.action_flag == 1 %}
-                                <i class="fas fa-plus text-white"></i>
-                                {% elif footer_updates.0.action_flag == 2 %}
-                                <i class="fas fa-pen text-white"></i>
-                                {% elif footer_updates.0.action_flag == 3 %}
-                                <i class="fas fa-minus text-white"></i>
-                                {% endif %}
-                            </a>
+                            <a href="" class="text-white truncate">{{ footer_skills.0.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_projects.0.name }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -55,15 +47,10 @@
                             <a href="" class="text-white truncate">{{ footer_posts.1.name }}</a>
                         </td>
                         <td>
-                            <a href="" class="text-white truncate">{{ footer_updates.1.object_repr }}
-                                {% if footer_updates.1.action_flag == 1 %}
-                                <i class="fas fa-plus text-white"></i>
-                                {% elif footer_updates.1.action_flag == 2 %}
-                                <i class="fas fa-pen text-white"></i>
-                                {% elif footer_updates.1.action_flag == 3 %}
-                                <i class="fas fa-minus text-white"></i>
-                                {% endif %}
-                            </a>
+                            <a href="" class="text-white truncate">{{ footer_skills.1.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_projects.1.name }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -74,15 +61,10 @@
                             <a href="" class="text-white truncate">{{ footer_posts.2.name }}</a>
                         </td>
                         <td>
-                            <a href="" class="text-white truncate">{{ footer_updates.2.object_repr }}
-                                {% if footer_updates.2.action_flag == 1 %}
-                                <i class="fas fa-plus text-white"></i>
-                                {% elif footer_updates.2.action_flag == 2 %}
-                                <i class="fas fa-pen text-white"></i>
-                                {% elif footer_updates.2.action_flag == 3 %}
-                                <i class="fas fa-minus text-white"></i>
-                                {% endif %}
-                            </a>
+                            <a href="" class="text-white truncate">{{ footer_skills.2.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_projects.2.name }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -91,15 +73,10 @@
                             <a href="" class="text-white truncate">{{ footer_posts.3.name }}</a>
                         </td>
                         <td>
-                            <a href="" class="text-white truncate">{{ footer_updates.3.object_repr }}
-                                {% if footer_updates.3.action_flag == 1 %}
-                                <i class="fas fa-plus text-white"></i>
-                                {% elif footer_updates.3.action_flag == 2 %}
-                                <i class="fas fa-pen text-white"></i>
-                                {% elif footer_updates.3.action_flag == 3 %}
-                                <i class="fas fa-minus text-white"></i>
-                                {% endif %}
-                            </a>
+                            <a href="" class="text-white truncate">{{ footer_skills.3.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_projects.3.name }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -108,15 +85,10 @@
                             <a href="" class="text-white truncate">{{ footer_posts.4.name }}</a>
                         </td>
                         <td>
-                            <a href="" class="text-white truncate">{{ footer_updates.4.object_repr }}
-                                {% if footer_updates.4.action_flag == 1 %}
-                                <i class="fas fa-plus text-white"></i>
-                                {% elif footer_updates.4.action_flag == 2 %}
-                                <i class="fas fa-pen text-white"></i>
-                                {% elif footer_updates.4.action_flag == 3 %}
-                                <i class="fas fa-minus text-white"></i>
-                                {% endif %}
-                            </a>
+                            <a href="" class="text-white truncate">{{ footer_skills.4.name }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="text-white truncate">{{ footer_projects.4.name }}</a>
                         </td>
                     </tr>
                 </table>

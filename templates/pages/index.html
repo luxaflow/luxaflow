@@ -1,73 +1,115 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% load humanize %}
 
-<section class="section-learning">
-    <div class="jumbotron">
-    <div class="row">
-        <div class="col-md-6">
-            <p>My current focus is on learning Python/Django with a couple of side requirements like JavaScript, Linux (Ubuntu 18.04) and Git.<br>
-            I have chosen these as Python is a fun language to learn I wanted to build my own website. I also once done would like
-            to move my website into a JavaScript framework like Vue, Angular or React. As the end goal is to become a Full Stack
-            developer and I think these are good tools to get me going.</p>
-        </div>
-        <div class="col-md-6">
-            <ul class="list-group">
-                {% for item in learning %}
-                <li class="list-group-item">
-                    <a href="#" data-toggle="modal" data-target="#learning-detail-{{ item.id }}">{{ item.name }}</a>
-                    <div class="float-right">
-                        {% if item.scale == 1 %}
-                        <i class="fas fa-star text-warning"></i>
-                        {% elif item.scale == 2 %}
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        {% elif item.scale == 3 %}
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        {% elif item.scale == 4 %}
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        {% elif item.scale == 5 %}
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        {% endif %}
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'about' data_type='skill' %}" class="btn btn-secondary btn-learning">Skills</a>
+{% block index %}
+
+{% include '../partials/_index_main_banner.html' %}
+
+<section class="section-index-about">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>About Me</h2>
+                    <p>My name is Lucas Wolfe and over the course of the past years I’ve moved from being a carpenter to system engineer. In
+                    the last two years I first discovered my passion for scripting in PowerShell, which over the last year moved to
+                    programming in general. I found that I really enjoy learning about development…</p>
+                    <a href="{% url 'about' data_type='me' %}" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row btn-row">
-        <div class="col-md-6 offset-md-6">
-            
+</section>
+
+<section class="section-index-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% if posts %}
+                <ul class="list-group">
+                    {% for item in posts %}
+                    <li class="list-group-item">
+                        <a href="#">{{ item.name }}</a>
+                        <small class="float-right">{{ item.created_at|naturalday }}</small>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'post_list' %}" class="btn btn-secondary btn-index-posts">Posts</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '../partials/_index_coding_banner.html' %}
+
+
+<section class="section-learning">
+    <div class="container">
+        <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <p>My current focus is on learning Python/Django with a couple of side requirements like JavaScript, Linux (Ubuntu 18.04) and Git.<br>
+                I have chosen these as Python is a fun language to learn I wanted to build my own website. I also once done would like
+                to move my website into a JavaScript framework like Vue, Angular or React. As the end goal is to become a Full Stack
+                developer and I think these are good tools to get me going.</p>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group">
+                    {% for item in learning %}
+                    <li class="list-group-item">
+                        <a href="#" data-toggle="modal" data-target="#learning-detail-{{ item.id }}">{{ item.name }}</a>
+                        <div class="float-right">
+                            {% if item.scale == 1 %}
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 2 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 3 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 4 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% elif item.scale == 5 %}
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'about' data_type='skill' %}" class="btn btn-secondary btn-learning">Skills</a>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="section-projects">
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="list-group">
-                    {% for item in projects %}
-                    <li class="list-group-item">
-                        <a href="#" data-toggle="modal" data-target="#project-detail-{{ item.id }}">{{ item.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
-            </div>
-            <div class=" col-md-6">
-                <p>These are the projects I’m currently working on. Apart from this I am also going to college for a degree in Software
-                development.</p>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        {% for item in projects %}
+                        <li class="list-group-item">
+                            <a href="#" data-toggle="modal" data-target="#project-detail-{{ item.id }}">{{ item.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
+                </div>
+                <div class=" col-md-6">
+                    <p>These are the projects I’m currently working on. Apart from this I am also going to college for a degree in Software
+                    development.</p>
+                </div>
             </div>
         </div>
     </div>

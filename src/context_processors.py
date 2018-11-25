@@ -1,8 +1,9 @@
-from django.contrib.admin.models import LogEntry
+from accounts.models import Skill
 from posts.models import Post
+from projects.models import Project
 
 def footer_data(request):
     footer_posts = Post.objects.all().order_by('-created_at')[:5]
-    updates_list = ['skill', 'education', 'experience', 'profile']
-    footer_updates = LogEntry.objects.filter(content_type__model__in=updates_list).order_by('-action_time')[:5]
-    return {'footer_posts': footer_posts, 'footer_updates': footer_updates}
+    footer_skills = Skill.objects.filter(soft_skill=False).filter(software=False).order_by('-scale')[:5]
+    footer_projects = Project.objects.all().order_by('-updated_at')[:5]
+    return {'footer_posts': footer_posts, 'footer_skills': footer_skills, 'footer_projects': footer_projects}

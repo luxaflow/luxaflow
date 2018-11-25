@@ -52,8 +52,9 @@ section .row {
     overflow: hidden;
 }
 
-.section-projects .btn-projects,
-.section-learning .btn-learning {
+.section-projects .btn,
+.section-learning .btn,
+.section-index-posts .btn {
     width: 100%;
     margin-top: 10px;
 }
@@ -81,7 +82,19 @@ section .row {
     border-bottom: 2px solid #007bff;
 }
 
-.section-index-banner h1 {
+.section-index-coding-banner{
+    min-height: 300px; 
+    background-image: url(../img/luca-bravo-217276-unsplash.jpg);
+    background-size: cover; 
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 2px solid #007bff;
+    border-top: 2px solid #007bff;
+}
+
+.section-index-banner h1,
+.section-index-coding-banner h2 {
     margin-top: 110px;
 }
 

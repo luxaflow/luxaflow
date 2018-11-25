@@ -11,9 +11,12 @@ import json
 def index(request):
     learning = Skill.objects.filter(learning=True)
     projects = Project.objects.filter(completed=False)
+    posts = Post.objects.all().order_by('-created_at')[:5]
     context = {
         'learning': learning,
-        'projects': projects
+        'projects': projects,
+        'posts': posts,
+
     }
     return render(request, 'pages/index.html', context)
 
