@@ -6,13 +6,17 @@
     <div class="jumbotron">
     <div class="row">
         <div class="col-md-6">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi vel officiis laudantium reprehenderit. Maiores temporibus accusantium nam provident repudiandae doloribus reiciendis, laboriosam perspiciatis hic nostrum. Accusantium odit ipsam impedit iure voluptatibus sunt, aspernatur minus repellat sed expedita, odio amet suscipit id quia error doloribus aliquid nobis. Consequuntur impedit mollitia aspernatur!</p>
+            <p>My current focus is on learning Python/Django with a couple of side requirements like JavaScript, Linux (Ubuntu 18.04) and Git.<br>
+            I have chosen these as Python is a fun language to learn I wanted to build my own website. I also once done would like
+            to move my website into a JavaScript framework like Vue, Angular or React. As the end goal is to become a Full Stack
+            developer and I think these are good tools to get me going.</p>
+            <a href="{% url 'about' data_type='skill' %}" class="btn btn-secondary btn-learning">Skills</a>
         </div>
         <div class="col-md-6">
             <ul class="list-group">
                 {% for item in learning %}
                 <li class="list-group-item">
-                    {{ item.name }}
+                    <a href="#" data-toggle="modal" data-target="#learning-detail-{{ item.id }}">{{ item.name }}</a>
                     <div class="float-right">
                         {% if item.scale == 1 %}
                         <i class="fas fa-star text-warning"></i>
@@ -48,18 +52,61 @@
         <div class="row">
             <div class="col-md-6">
                 <ul class="list-group">
-                    {% for project in projects %}
+                    {% for item in projects %}
                     <li class="list-group-item">
-                        {{ project.name }}
+                        <a href="#" data-toggle="modal" data-target="#project-detail-{{ item.id }}">{{ item.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
             <div class=" col-md-6">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quo officiis laborum obcaecati sit quisquam labore doloribus enim, saepe molestias.</p>
+                <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Learning Details Modals -->
+{% for item in learning %}
+<div class="modal fade" id="learning-detail-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ item.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{item.description}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% for item in projects %}
+<div class="modal fade" id="project-detail-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ item.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{item.description}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
 
 {% endblock  %}

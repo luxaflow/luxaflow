@@ -5,6 +5,7 @@ from django.contrib.admin.models import LogEntry
 from accounts.models import Profile, Experience, Education, Skill
 from projects.models import Project
 from posts.models import Post
+import json
 
 
 def index(request):
@@ -54,4 +55,8 @@ def dashboard(request):
     return render(request, 'pages/dashboard.html', context)
 
 
-
+def fetch_learning_detail(request, id):
+    skill = get_object_or_404(Skill, id=id)
+    data = json.dumps(skill)
+    print(data)
+    return HttpResponse(content=json.dumps(skill))

@@ -39,6 +39,7 @@ section .row {
 
 .breadcrumb-nav .breadcrumb {
     padding: .15rem 0rem;
+    font-size: .8rem;
 }
 
 .primary-overlay {
@@ -49,6 +50,11 @@ section .row {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+.section-projects .btn-projects,
+.section-learning .btn-learning {
+    width: 100%
 }
 
 .post-title {

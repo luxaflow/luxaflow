@@ -1,12 +1,11 @@
-function getAbout(){
+function fetchLearningDetail(id){
     $.ajax({
-        url: '/accounts/get_about',
-        type: 'POST',
-        data: data,
+        url: "{% url 'fetch_learing_detail id=" + id + " %}",
+        type: 'GET',
         cache: false,
         dataType: 'json',
-        success: function(resp){
-            alert('hello')
+        success: function(){
+            alert(id)
         }
     })
 }

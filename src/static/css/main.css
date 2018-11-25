@@ -52,6 +52,11 @@ section .row {
     overflow: hidden;
 }
 
+.section-projects .btn-projects,
+.section-learning .btn-learning {
+    width: 100%
+}
+
 .post-title {
     padding-bottom: 2px;
 }
