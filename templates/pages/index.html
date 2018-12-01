@@ -1,160 +1,45 @@
 {% extends 'base.html' %}
 
-{% load humanize %}
+{% block content %}
 
-{% block index %}
-
-{% include '../partials/_index_main_banner.html' %}
-
-<section class="section-index-about">
-    <div class="container">
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>About Me</h2>
-                    <p>My name is Lucas Wolfe and over the course of the past years I’ve moved from being a carpenter to system engineer. In
-                    the last two years I first discovered my passion for scripting in PowerShell, which over the last year moved to
-                    programming in general. I found that I really enjoy learning about development…</p>
-                    <a href="{% url 'about' data_type='me' %}" class="btn btn-secondary">Read More</a>
-                </div>
-            </div>
+<section class="section-landing">
+    <div class="row">
+        <div class="col m12">
+            <h1 class="white-text flow-text hide-on-med-and-down">LuxaFlow Development</h1>
+            <p class="white-text flow-text">My Name is Lucas Wolfe and i'm a learning developer. This has
+                become more than
+                just learning, but passion, <a href="{% url 'about' data_type='me' %}" class="grey-text">let me tell you some more..</a></p>
         </div>
     </div>
 </section>
 
-<section class="section-index-posts">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                {% if posts %}
-                <ul class="list-group">
-                    {% for item in posts %}
-                    <li class="list-group-item">
-                        <a href="#">{{ item.name }}</a>
-                        <small class="float-right">{{ item.created_at|naturalday }}</small>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="{% url 'post_list' %}" class="btn btn-secondary btn-index-posts">Posts</a>
-                {% endif %}
-            </div>
+<section class="section-updates hide-on-med-and-down">
+    <div class="row">
+        <div class="col s12 m6">
+            <table class="striped">
+                <tr>
+                    <th>Recent Posts</th>
+                </tr>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col s12 m6">
+            <table class="striped">
+                <tr>
+                    <th>Current Projects</th>
+                </tr>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.name }}</td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </section>
 
-{% include '../partials/_index_coding_banner.html' %}
-
-
-<section class="section-learning">
-    <div class="container">
-        <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-6">
-                <p>My current focus is on learning Python/Django with a couple of side requirements like JavaScript, Linux (Ubuntu 18.04) and Git.<br>
-                I have chosen these as Python is a fun language to learn I wanted to build my own website. I also once done would like
-                to move my website into a JavaScript framework like Vue, Angular or React. As the end goal is to become a Full Stack
-                developer and I think these are good tools to get me going.</p>
-            </div>
-            <div class="col-md-6">
-                <ul class="list-group">
-                    {% for item in learning %}
-                    <li class="list-group-item">
-                        <a href="#" data-toggle="modal" data-target="#learning-detail-{{ item.id }}">{{ item.name }}</a>
-                        <div class="float-right">
-                            {% if item.scale == 1 %}
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 2 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 3 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 4 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 5 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% endif %}
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="{% url 'about' data_type='skill' %}" class="btn btn-secondary btn-learning">Skills</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-projects">
-    <div class="container">
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <p>These are the projects I’m currently working on. Apart from this I am also going to college for a degree in Software
-                    development.</p>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <ul class="list-group">
-                        {% for item in projects %}
-                        <li class="list-group-item">
-                            <a href="#" data-toggle="modal" data-target="#project-detail-{{ item.id }}">{{ item.name }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    <a href="{% url 'project_list' %}" class="btn btn-secondary btn-projects">Projects</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Learning Details Modals -->
-{% for item in learning %}
-<div class="modal fade" id="learning-detail-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ item.name }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {{item.description}}
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
-
-{% for item in projects %}
-<div class="modal fade" id="project-detail-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ item.name }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {{item.description}}
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
-
-
-
-
-{% endblock  %}
+{% endblock %}

@@ -1,54 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from .models import Post, Comment
-from accounts.models import Profile
-from .forms import PostModelForm
+from django.http import JsonResponse
+from django.core import serializers
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from .models import Post
 
 
 def post_list(request): 
     posts = Post.objects.all().order_by('-created_at')
-    comments = Comment.objects.all().order_by('-created_at')
+
+    paginator = Paginator(posts, 9)
+    page = request.GET.get('page')
+    paged_posts = paginator.get_page(page)
+
     context = {
-        'posts': posts,
-        'comments': comments
+        'posts': paged_posts,
     }
+    print(str(paged_posts))
     return render(request, 'posts/post_list.html', context)
 
 
-@login_required
-def post_create(request):
-    if request.method == 'POST':
-        form = PostModelForm(request.POST or None)
-        user = User.objects.get(id=request.user.id)
-        profile = get_object_or_404(Profile, user=user)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.profile = profile
-            post.save()
-            return redirect('post_list')
-    else:
-        form = PostModelForm()
-        context = {
-            'form': form
-        }
-        return render(request, 'posts/post_form.html', context)
-
-
-@login_required
-def post_edit(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    form = PostModelForm(instance=post)
-    context = {
-        'form': form,
-        'post': post
-    }
-    return render(request, 'posts/post_form.html', context)
-
-
-@login_required
-def post_delete(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    if post:
-        post.delete()
-        return redirect('post_list')
+def get_post(request, post_id):
+    serialized_post = serializers.serialize('json', Post.objects.filter(id=post_id))
+    return JsonResponse(serialized_post, safe=False)

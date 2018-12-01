@@ -1,255 +1,412 @@
 {% extends 'base.html' %}
 
-{% block breadcrumb %}
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">About</li>
-            <li class="breadcrumb-item active" aria-current="page">
-                {% if 'me' in request.path %}
-                Me
-                {% elif 'experience' in request.path %}
-                Experience
-                {% elif 'education' in request.path %}
-                Education
-                {% elif 'skill' in request.path %}
-                Skill
-                {% endif %}
-            </li>
-        </ol>
-{% endblock %}
-
 {% block content %}
-
-<section class="section-about">
-    <div class="jumbotron">
+{% if 'me' in request.path or 'skill' in request.path %}
+    <section class="section-about-large ">
+        {% if 'me' in request.path %}
+        <div class="row" id="about-me">
+            <div class="col m12">
+                <p class="white-text">{{ profile.about|linebreaks }}</p>
+            </div>
+        </div>
+        {% elif 'skill in request.path' %}
+        <div class="row hide-on-med-and-down">
+            <div class="col s3">
+                <table class="striped">
+                    <tr>
+                        <th>Soft Skills:</th>
+                    </tr>
+                    {% for item in soft_skill %}
+                    <tr>
+                        <td>{{ item.name }}
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col s3">
+                <table class="striped">
+                    <tr>
+                        <th>Languages:</th>
+                    </tr>
+                    {% for item in language %}
+                    <tr>
+                        <td>{{ item.name }}
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col s3">
+                <table class="striped">
+                    <tr>
+                        <th>Frameworks & Libaries:</th>
+                    </tr>
+                    {% for item in framework %}
+                    <tr>
+                        <td>{{ item.name }}
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col s3">
+                <table class="striped">
+                    <tr>
+                        <th>Other:</th>
+                    </tr>
+                    {% for item in other %}
+                    <tr>
+                        <td>{{ item.name }}
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% else %}
+    <section class="section-about-content hide-on-med-and-down">
         <div class="row">
-            <div class="col-sm-8 col-md-2">
-                <div class="text-center">
-                    <img src="{{ profile.user_img.url }}" alt="{{ profile.user_img.name }}" class="rounded profile-img">
-                </div>
+            <div class="col m12">
+                <h3 class="white-text" id="about-content-title">{{ data.0.name }}</h3>
+                <p class="white-text" id="about-content-body">{{ data.0.description }}</p>
             </div>
-            <div class="col-sm-4 col-md-1">
-                <ul class="about-links">
-                    <li>
-                        <a href="https://www.linkedin.com/in/lucaswolfe/" target="_blank"><i class="fab fa-linkedin fa-2x text-secondary"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://www.github.com/luxaflow" target="_blank"><i class="fab fa-github-square fa-2x text-secondary"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://www.stackoverflow.com/users/8935364/lucas-wolfe" target="_blank"><i class="fab fa-stack-overflow fa-2x text-secondary"></i></a>
-                    </li>
+        </div>
+    </section>
+{% endif %}
+
+
+{% if not 'me' in request.path %}
+<section class="section-about-list {% if 'skill' in request.path %}hide-on-large-only{% endif %}">
+    {% if 'skill' in request.path %}
+    <div class="row hide-on-large-only">
+        <div class="carousel carousel-slider">
+            <div class="carousel-item white-text" href="#one!">
+                <ul class="collection with-header">
+                    <div class="container">
+                        <li class="collection-header">
+                            <h5 class="white-text">Soft Skills:</h5>
+                        </li>
+                        {% for item in soft_skill %}
+                        <li class="collection-item">
+                            <a class="white-text modal-trigger" href="#about-content-modal" onclick="getModalContent('skill', {{ item.id }})">{{ item.name }}</a>
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </div>
                 </ul>
             </div>
-            <div class="col-sm-12 col-md-8 offset-md-1">
-                <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item">
-                        <a href="{% url 'about' data_type='me' %}" class="nav-link {% if 'me' in request.path %}active{% endif %}">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'about' data_type='experience' %}" class="nav-link {% if 'experience' in request.path %}active{% endif %}">EXPERIENCE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'about' data_type='education' %}" class="nav-link {% if 'education' in request.path %}active{% endif %}">EDUCATION</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'about' data_type='skill' %}" class="nav-link {% if 'skill' in request.path %}active{% endif %}">SKILLS</a>
-                    </li>
+            <div class="carousel-item white-text" href="#two!">
+                <ul class="collection with-header">
+                    <div class="container">
+                        <li class="collection-header">
+                            <h5 class="white-text">Languages:</h5>
+                        </li>
+                        {% for item in language %}
+                        <li class="collection-item">
+                            <a class="white-text modal-trigger" href="#about-content-modal" onclick="getModalContent('skill', {{ item.id }})">{{ item.name }}</a>
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </div>
+            <div class="carousel-item white-text" href="#three!">
+                <ul class="collection with-header">
+                    <div class="container">
+                        <li class="collection-header">
+                            <h5 class="white-text">Frameworks:</h5>
+                        </li>
+                        {% for item in framework %}
+                        <li class="collection-item">
+                            <a class="white-text modal-trigger" href="#about-content-modal" onclick="getModalContent('skill', {{ item.id }})">{{ item.name }}</a>
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </ul>
+            </div>
+            <div class="carousel-item white-text" href="#four!">
+                <ul class="collection with-header">
+                    <div class="container">
+                        <li class="collection-header">
+                            <h5 class="white-text">Other:</h5>
+                        </li>
+                        {% for item in other %}
+                        <li class="collection-item">
+                            <a class="white-text modal-trigger" href="#about-content-modal" onclick="getModalContent('skill', {{ item.id }})">{{ item.name }}</a>
+                            <span class="right">
+                                {% if item.scale == 1 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 2 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 3 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 4 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% elif item.scale == 5 %}
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                <i class="fas fa-star yellow-text"></i>
+                                {% endif %}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </div>
                 </ul>
             </div>
         </div>
     </div>
-    {% if 'me' in request.path %}
-        <div class="jumbotron">
-            {{ data|linebreaks }}
-        </div>
-    {% elif 'experience' in request.path %}
-        {% for item in data %}
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>{{ item.name }}</h4>
-                    <h6>{{ item.job_title }}</h6>
-                    <small>{{item.from_date|date:"m/Y"}} - {% if item.till_date%}{{ item.till_date|date:'d/Y' }}{% else %}Current{% endif %}</small>
-                    <p>{{ item.description|linebreaks }}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    {% elif 'education' in request.path %}
-        {% for item in data %}
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>{{ item.name }}</h4>
-                    <h6>{{ item.level }}</h6>
-                    <small>{{item.from_date|date:"m/Y"}} - {% if item.till_date%}{{ item.till_date|date:'d/Y' }}{% else %}Current{% endif %}</small>
-                    <p>{{ item.description|linebreaks }}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    {% elif 'skill in request.path' %}
-    <div class="jumbotron">
-            <table class="table">
-                <tr>
-                    <th scope="col">
-                        <h5><strong>Skills:</strong></h5>
-                    </th>
-                    <th scope="col">
-                        <h5 class="float-right"><strong>Scale 1-5:</strong></h5>
-                    </th>
-                </tr>
-                {% for item in soft_skill %}
-                <tr>
-                    <td>
-                        <h6>{{item.name}}</h6>
-                    </td>
-                    <td>
-                        <div class="float-right">
-                            {% if item.scale == 1 %}
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 2 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 3 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 4 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 5 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% endif %}
-                        </div>
-                    </td>
-                </tr>
+    {% else %}
+    <div class="row">
+        <div class="col s12">
+            <ul class="collection ">
+                {% for item in data %}
+                <li class="collection-item">
+                    {% if 'experience' in request.path %}
+                    <a href="#about-content-modal" class="white-text modal-trigger" onclick="getModalContent( 'experience', {{ item.id }})">{{ item.name }}</a>
+                    {% elif 'education' in request.path %}
+                    <a href="#about-content-modal" class="white-text modal-trigger" onclick="getModalContent('education', {{ item.id }})">{{ item.name }}</a>
+                    {% endif %}
+                </li>
                 {% endfor %}
-                <tr>
-                    <th scope="col">
-                        <h5><strong>Software:</strong></h5>
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-                {% for item in software %}
-                <tr>
-                    <td>
-                        <h6>{{item.name}}</h6>
-                    </td>
-                    <td>
-                        <div class="float-right">
-                            {% if item.scale == 1 %}
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 2 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 3 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 4 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 5 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% endif %}
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <th scope="col">
-                        <h5><strong>Languages:</strong></h5>
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-                {% for item in language %}
-                <tr>
-                    <td>
-                        <h6>{{item.name}}</h6>
-                    </td>
-                    <td>
-                        <div class="float-right">
-                            {% if item.scale == 1 %}
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 2 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 3 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 4 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 5 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% endif %}
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <th scope="col">
-                        <h5><strong>Frameworks:</strong></h5>
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-                {% for item in framework %}
-                <tr>
-                    <td>
-                        <h6>{{item.name}}</h6>
-                    </td>
-                    <td>
-                        <div class="float-right">
-                            {% if item.scale == 1 %}
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 2 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 3 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 4 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% elif item.scale == 5 %}
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            {% endif %}
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+            </ul>
         </div>
     </div>
-    {% endif %}    
+    {% endif %}
+    {% if data.has_other_pages %}
+    <div class="row pagination-bottom">
+        <div class="col s12 center">
+            <ul class="pagination">
+                {% if posts.has_previous %}
+                    <li><a href="?page={{ data.previous_page_number }}"><i class="fas fa-chevron-left"></i></a></li>
+                {% else %}
+                    <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-left"></i></a></li>
+                {% endif %}
+                {% for i in data.paginator.page_range%}
+                    {% if data.number == i %}
+                        <li class="active"><a>{{i}}</a></li>
+                    {% else %}
+                        <li class="waves-effect"><a href="?page={{i}}">{{i}}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if data.has_next %}
+                    <li><a href="?page={{ data.next_page_number }}"><i class="fas fa-chevron-right"></i></a></li>
+                {% else %}
+                    <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-right"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
 </section>
+{% endif %}
+
+<section class="section-about-buttons hide-on-med-and-up">
+    <div class="row">
+        <div class="col s6">
+            <a href="{% url 'about' data_type='me' %}" class="btn grey darken-4 white-text">ME</a>
+        </div>
+        <div class="col s6">
+            <a href="{% url 'about' data_type='experience' %}" class="btn grey darken-4 white-text">Experience</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <a href="{% url 'about' data_type='education' %}" class="btn grey darken-4 white-text">Education</a>
+        </div>
+        <div class="col s6">
+            <a href="{% url 'about' data_type='skill' %}" class="btn grey darken-4 white-text">Skills</a>
+        </div>
+    </div>
+</section>
+
+<!-- AbOUT CONTENT MODAL -->
+<div id="about-content-modal" class="modal modal-fixed-footer grey darken-4">
+    <div class="modal-content">
+        <h4 id="about-modal-title" class="truncate white-text"></h4>
+        <p id="about-modal-body" class="white-text"></p>
+    </div>
+    <div class="modal-footer grey darken-4">
+        <a href="#!" class="modal-close white-text"> <i class="fas fa-times fa-3x"></i> </a>
+    </div>
+</div>
+
 
 {% endblock %}

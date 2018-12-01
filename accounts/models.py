@@ -55,7 +55,7 @@ class Skill(models.Model):
     name = models.CharField(max_length=200)
     scale = models.SmallIntegerField()
     language = models.BooleanField(default=False)
-    software = models.BooleanField(default=False)
+    other = models.BooleanField(default=False)
     framework = models.BooleanField(default=False)
     soft_skill = models.BooleanField(default=False)
     learning = models.BooleanField(default=False)

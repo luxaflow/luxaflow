@@ -1,35 +1,24 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-primary">
-    <div class="container">
-        <a class="navbar-brand text-white" href="{% url 'index' %}">LuxaFlow</a>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item"></li>
-                <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'about' data_type='me' %}">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'post_list' %}">Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'project_list' %}">Projects</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-expanded="false">{{user.get_full_name}} <i class="fas fa-caret"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'account_edit' %}">Profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                    </li>
-                </ul>
-            </li>
-            {% endif %}
-        </ul>  
+<nav id="top-navbar" class="z-depth-0">
+    <div class="row center ">
+        <div class="col s3 nav-item ">
+            <a href="{% url 'index' %}">
+                <span>Home</span>
+            </a>
+        </div>
+        <div class="col s3 nav-item">
+            <a href="{% url 'about' data_type='me' %}">
+                <span class="white-text">About</span>
+            </a>
+        </div>
+        <div class="col s3 nav-item">
+            <a href="{% url 'post_list' %}">
+                <span class="white-text">Stories</span>
+            </a>
+        </div>
+        <div class="col s3 nav-item">
+            <a href="{% url 'project_list' %}">
+                <span class="white-text">Projects</span>
+            </a>
+        </div>
     </div>
 </nav>

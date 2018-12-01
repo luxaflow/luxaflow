@@ -1,52 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .forms import ProjectModelForm
+from django.http import JsonResponse
+from django.core import serializers
+from django.core.paginator import Page, PageNotAnInteger, Paginator
 from .models import Project
 
 
 def project_list(request):
     projects = Project.objects.all().order_by('-created_at')
+    paginator = Paginator(projects, 10)
+    page = request.GET.get('page')
+    paged_projects = paginator.get_page(page)
     context = {
-        'projects': projects
+        'projects': paged_projects
     }
     return render(request, 'projects/project_list.html', context)
 
 
-@login_required
-def project_create(request):
-    if request.method == 'POST':
-        form = ProjectModelForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return redirect('project_list')
-    else:
-        form = ProjectModelForm()
-        context = {
-            'form': form
-        }
-        return render(request, 'projects/project_form.html', context)
-
-
-@login_required
-def project_edit(request, project_id):
-    project = get_object_or_404(Project, id=project_id)
-    if request.method == 'POST':
-        form = ProjectModelForm(request.POST, request.FILES, instance=project)
-        if form.is_valid():
-            form.save()
-            redirect('project_list')
-    else:
-        form =ProjectModelForm(instance=project)
-        context = {
-            'form': form,
-            'project': project
-        }
-        return render(request, 'projects/project_form.html', context)
-
-
-@login_required
-def project_delete(request, project_id):
-    project = get_object_or_404(Project, id=project_id)
-    if project:
-        project.delete()
-        return redirect('project_list')
+def get_project(request, project_id):
+    serialized_project = serializers.serialize('json', Project.objects.filter(id=project_id))
+    return JsonResponse(serialized_project, safe=False)

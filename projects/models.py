@@ -10,8 +10,7 @@ class Project(models.Model):
     img_1 = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True, null=True)
     img_2 = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True, null=True)
     img_3 = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True, null=True)
-    img_4 = models.ImageField(
-        upload_to='images/%Y/%m/%d/', blank=True, null=True)
+    img_4 = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):

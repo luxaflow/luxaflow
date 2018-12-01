@@ -2,86 +2,76 @@
 
 {% load humanize %}
 
-{% block breadcrumb %}
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Posts</li>
-</ol>
-{% endblock %}
-
 {% block content %}
 
-<section class="section-posts-list">
-    {% if user.is_authenticated %}
+<section class="section-post-content hide-on-med-and-down">
     <div class="row">
-        <div class="col-md-12">
-            <div class="float-right">
-                <a href="{% url 'post_create' %}" class="btn btn-success">Add Post</a>
-            </div>
+        <div class="col m12">
+            <h3 class="white-text" id="post-content-title">{{ posts.0.name }}</h3>
+            <p id="post-content-body" class="white-text">{{ posts.0.body|linebreaks }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-post-list">
+    <div class="row">
+        <div class="col s12 hide-on-med-and-down">
+            <ul class="collection ">
+                {% for post in posts %}
+                <li class="collection-item">
+                    <a href="#" onclick="getPostContent({{ post.id }})" class="white-text">{{ post.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row hide-on-large-only">
+        <div class="col s12">
+            <ul class="collection ">
+                {% for post in posts %}
+                <li class="collection-item">
+                    <a onclick="getPostModalContent({{ post.id }})" class="white-text modal-trigger" href="#post-content-modal">{{ post.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% if posts.has_other_pages %}
+    <div class="row pagination-bottom">
+        <div class="col s12 center">
+            <ul class="pagination">
+                {% if posts.has_previous %}
+                    <li><a href="?page={{ posts.previous_page_number }}"><i class="fas fa-chevron-left"></i></a></li>
+                {% else %}
+                    <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-left"></i></a></li>
+                {% endif %}
+                {% for i in posts.paginator.page_range%}
+                    {% if posts.number == i %}
+                        <li class="active"><a>{{i}}</a></li>
+                    {% else %}
+                        <li class="waves-effect"><a href="?page={{i}}">{{i}}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if posts.has_next %}
+                    <li><a href="?page={{ posts.next_page_number }}"><i class="fas fa-chevron-right"></i></a></li>
+                {% else %}
+                    <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-right"></i></a></li>
+                {% endif %}
+            </ul>
         </div>
     </div>
     {% endif %}
-    {% for post in posts %}
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-9">
-                        <h5 class="post-title">{{ post.name }}</h5>
-                    </div>
-                    {% if request.user.id == post.profile.user.id %}
-                    <div class="col-md-3">
-                        <div class="float-right">
-                            <a href="{% url 'post_edit' post_id=post.id %}" class="btn-sm btn-success">Edit</a>
-                            <a href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#delete-post-{{ post.id }}">Delete</a>
-                        </div>
-                        
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="card-body">
-            {{ post.body|linebreaks }}
-            {{ profile.get_full_name }}
-            </div>
-            <div class="card-footer text-muted">
-                <div class="row">
-                    <div class="col-md-6">
-                        <small>Written by - {{ post.profile.get_full_name }}</small>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <small class="float-right">{{post.created_at|naturalday}}</small>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    {% endfor %}
 </section>
 
-{% for post in posts %}
-<!-- Delete modals -->
-<div class="modal fade" id="delete-post-{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Are You Sure?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete {{ post.name }}? ?
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-success" data-dismiss="modal">No</a>
-                <a href="{% url 'post_delete' post_id=post.id %}" class="btn btn-secondary">Yes</a>
-            </div>
-        </div>
+<!-- POST CONTENT MODAL -->
+<div id="post-content-modal" class="modal modal-fixed-footer grey darken-4">
+    <div class="modal-content">
+        <h4 id="post-modal-title" class="truncate white-text"></h4>
+        <p id="post-modal-body" class="white-text"></p>
+    </div>
+    <div class="modal-footer grey darken-4">
+        <a href="#!" class="modal-close white-text"> <i class="fas fa-times fa-3x"></i> </a>
     </div>
 </div>
-{% endfor %}
-
 
 {% endblock %}
