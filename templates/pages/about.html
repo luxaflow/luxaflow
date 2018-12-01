@@ -6,7 +6,7 @@
         {% if 'me' in request.path %}
         <div class="row" id="about-me">
             <div class="col m12">
-                <p class="white-text">{{ profile.about|linebreaks }}</p>
+                <p class="white-text">{{ profile.about }}</p>
             </div>
         </div>
         {% elif 'skill in request.path' %}
@@ -334,7 +334,7 @@
         </div>
     </div>
     {% else %}
-    <div class="row">
+    <div class="row hide-on-large-only">
         <div class="col s12">
             <ul class="collection ">
                 {% for item in data %}
@@ -343,6 +343,21 @@
                     <a href="#about-content-modal" class="white-text modal-trigger" onclick="getModalContent( 'experience', {{ item.id }})">{{ item.name }}</a>
                     {% elif 'education' in request.path %}
                     <a href="#about-content-modal" class="white-text modal-trigger" onclick="getModalContent('education', {{ item.id }})">{{ item.name }}</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row hide-on-med-and-down">
+        <div class="col s12">
+            <ul class="collection ">
+                {% for item in data %}
+                <li class="collection-item">
+                    {% if 'experience' in request.path %}
+                    <a href="#" class="white-text" onclick="getContent( 'experience', {{ item.id }})">{{ item.name }}</a>
+                    {% elif 'education' in request.path %}
+                    <a href="#" class="white-text" onclick="getContent('education', {{ item.id }})">{{ item.name }}</a>
                     {% endif %}
                 </li>
                 {% endfor %}

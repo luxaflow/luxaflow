@@ -23,19 +23,19 @@ def about(request, data_type):
         'profile': profile,
     }
     if data_type == 'experience':
-        experience = Experience.objects.all().filter(profile=profile).order_by('-from_date')
+        experience = Experience.objects.all().order_by('-from_date')
         paginator = Paginator(experience, 10)
         page = request.GET.get('page')
         paged_experience = paginator.get_page(page)
         context.__setitem__('data', paged_experience)
     elif data_type == 'education':
-        education = Education.objects.all().filter(profile=profile).order_by('-from_date')
+        education = Education.objects.all().order_by('-from_date')
         paginator = Paginator(education, 10)
         page = request.GET.get('page')
         paged_education = paginator.get_page(page)
         context.__setitem__('data', paged_education)
     elif data_type == 'skill':
-        data = Skill.objects.all().filter(profile=profile).order_by('-scale')
+        data = Skill.objects.all().order_by('-scale')
         context.__setitem__('language', data.filter(language=True))
         context.__setitem__('other', data.filter(other=True))
         context.__setitem__('framework', data.filter(framework=True))

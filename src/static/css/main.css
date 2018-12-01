@@ -318,6 +318,10 @@ footer li{
     grid-row: 2 / 6;
 }
 
+.section-about-large p {
+    white-space: pre-wrap;
+}
+
 .section-about-list {
     grid-column: 1 / 7; 
     grid-row: 2 / 6;
@@ -335,6 +339,10 @@ footer li{
     margin-top: 5px;
     grid-column: 1 / 7;
     grid-row: 6;
+}
+
+.section-about-content p {
+    white-space: pre-wrap;
 }
 
 .section-about-buttons .row:last-child {
@@ -401,6 +409,10 @@ footer li{
     border: 4px solid black;
 }
 
+.section-post-content p {
+    white-space: pre-wrap;
+}
+
 .section-post-list {
     grid-column: 1 / 7; 
     grid-row: 2 / 6;
@@ -411,7 +423,7 @@ footer li{
 }
 
 @media screen and (min-width: 1201px) {
-    .section-post-content {
+    .section-post-content {   
         overflow-y:scroll;
         grid-column: 3 / 8; 
         grid-row: 5 / 12;
@@ -432,6 +444,15 @@ footer li{
 
 /* PROJECTS PAGE */
 
+.section-project-content {
+    grid-column: 1 / 7; 
+    grid-row: 5 / 6;
+    background-color: rgba(33, 33, 33, 0.75);
+    border-radius: 10px;
+    color: white;
+    border: 4px solid black;
+}
+
 .section-project-list {
     grid-column: 1 / 7; 
     grid-row: 2 / 6;
@@ -441,9 +462,13 @@ footer li{
     position: relative;
 }
 
+.section-post-content p {
+        white-space: pre-wrap;
+    }
+
+
 @media screen and (min-width: 1201px) {
     .section-project-content {
-        overflow-y:scroll;
         grid-column: 3 / 8; 
         grid-row: 5 / 12;
         background-color: rgba(33, 33, 33, 0.55);
@@ -460,5 +485,3 @@ footer li{
         border-radius: 10px;
     }
 }
-
-/* MODAL CHANGES */

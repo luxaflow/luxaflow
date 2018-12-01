@@ -10,6 +10,7 @@ $(document).ready(function () {
         dismissible: false,
         inDuration: 500
     });
+
     
 });
 
@@ -20,7 +21,7 @@ function getPostContent(id) {
         success: function (result) {
             post = JSON.parse(result);
             $('#post-content-title').html(post[0].fields.name);
-            $('#post-content-body').html(post[0].fields.body);
+            $('#post-content-body').text(post[0].fields.body);
         }
     })
 }

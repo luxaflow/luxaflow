@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col m12">
             <h3 class="white-text" id="post-content-title">{{ posts.0.name }}</h3>
-            <p id="post-content-body" class="white-text">{{ posts.0.body|linebreaks }}</p>
+            <p id="post-content-body" class="white-text">{{ posts.0.body }}</p>
         </div>
     </div>
 </section>
 
 <section class="section-post-list">
-    <div class="row">
-        <div class="col s12 hide-on-med-and-down">
+    <div class="row hide-on-med-and-down">
+        <div class="col s12">
             <ul class="collection ">
                 {% for post in posts %}
                 <li class="collection-item">
