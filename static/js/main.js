@@ -49,6 +49,18 @@ function getProjectContent(id) {
     })
 }
 
+function getProjectModalContent(id) {
+    $.ajax({
+        url: '/projects/detail/' + id,
+        dataType: 'json',
+        success: function (result) {
+            project = JSON.parse(result);
+            $('#project-modal-title').html(project[0].fields.name);
+            $('#project-modal-body').html(project[0].fields.description);
+        }
+    })
+}
+
 function getContent(dataType, id) {
     $.ajax({
         url: '/about/'+ dataType +'/detail/' + id,
