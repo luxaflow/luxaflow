@@ -219,7 +219,7 @@ td, th {
 }
 
 .section-landing p {
-    margin-top: 40px;   
+    margin-top: 70px;   
 }
 
 @media screen and (min-width: 1201px) {
@@ -332,7 +332,7 @@ footer li{
 }
 
 .section-about-buttons {
-    margin-top: 15px;
+    margin-top: 5px;
     grid-column: 1 / 7;
     grid-row: 6;
 }
