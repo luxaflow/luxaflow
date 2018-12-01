@@ -14,11 +14,20 @@
 </section>
 
 <section class="section-project-list">
-    <div class="row">
+    <div class="row hide-on-med-and-down">
         <div class="col s12">
             <ul class="collection">
                 {% for project in projects %}
                 <li class="collection-item"><a href="#" onclick="getProjectContent({{ project.id }})" class="white-text">{{ project.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row show-on-small-only">
+        <div class="col s12">
+            <ul class="collection ">
+                {% for project in projects %}
+                <li class="collection-item"><a href="#project-content-modal" onclick="getProjectModalContent({{ project.id }})" class="white-text modal-trigger">{{ project.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -50,6 +59,16 @@
     {% endif %}
 </section>
 
+<!-- PROJECT CONTENT MODAL -->
+<div id="project-content-modal" class="modal modal-fixed-footer grey darken-4">
+    <div class="modal-content">
+        <h4 id="project-modal-title" class="truncate white-text"></h4>
+        <p id="project-modal-body" class="white-text"></p>
+    </div>
+    <div class="modal-footer grey darken-4">
+        <a href="#!" class="modal-close white-text"> <i class="fas fa-times fa-3x"></i> </a>
+    </div>
+</div>
 
 
 
