@@ -347,6 +347,10 @@ footer li{
 }
 
 @media screen and (min-width: 1201px){
+    .section-about-large {
+        background-color: unset;
+    }
+
     .about-links li{
         display: block;  
     }
