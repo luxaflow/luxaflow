@@ -94,6 +94,10 @@ td, th {
     padding-bottom: 10px;
 }
 
+.modal-content p {
+    white-space: pre-wrap;    
+}
+
 @media screen and (min-width: 1201px) {
     table.striped>tbody>tr {
         color: white;
