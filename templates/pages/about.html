@@ -393,21 +393,27 @@
 </section>
 {% endif %}
 
-<section class="section-about-buttons hide-on-med-and-up">
+<section class="section-about-buttons hide-on-large-only">
     <div class="row">
-        <div class="col s6">
-            <a href="{% url 'about' data_type='me' %}" class="btn grey darken-4 white-text">ME</a>
+        <div class="col m6 s12">
+            <div class="row">
+                <div class="col s6">
+                    <a href="{% url 'about' data_type='me' %}" class="btn grey darken-4 white-text">ME</a>
+                </div>
+                <div class="col s6">
+                    <a href="{% url 'about' data_type='experience' %}" class="btn grey darken-4 white-text">Experience</a>
+                </div>
+            </div>
         </div>
-        <div class="col s6">
-            <a href="{% url 'about' data_type='experience' %}" class="btn grey darken-4 white-text">Experience</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s6">
-            <a href="{% url 'about' data_type='education' %}" class="btn grey darken-4 white-text">Education</a>
-        </div>
-        <div class="col s6">
-            <a href="{% url 'about' data_type='skill' %}" class="btn grey darken-4 white-text">Skills</a>
+        <div class="col m6 s12">
+            <div class="row">
+                <div class="col s6">
+                    <a href="{% url 'about' data_type='education' %}" class="btn grey darken-4 white-text">Education</a>
+                </div>
+                <div class="col s6">
+                    <a href="{% url 'about' data_type='skill' %}" class="btn grey darken-4 white-text">Skills</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>

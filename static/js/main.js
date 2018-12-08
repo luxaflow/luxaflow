@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('.carousel').carousel({
-        indicators: true,
         fullWidth: true,
         startingTop: '0%'
     });

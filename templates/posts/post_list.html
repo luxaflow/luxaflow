@@ -37,7 +37,7 @@
         </div>
     </div>
     {% if posts.has_other_pages %}
-    <div class="row pagination-bottom">
+    <div class="row pagination-bottom hide-on-med-and-down">
         <div class="col s12 center">
             <ul class="pagination">
                 {% if posts.has_previous %}
@@ -56,6 +56,34 @@
                     <li><a href="?page={{ posts.next_page_number }}"><i class="fas fa-chevron-right"></i></a></li>
                 {% else %}
                     <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-right"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<section class="section-posts-mobile-pagination hide-on-large-only">
+    {% if posts.has_other_pages %}
+    <div class="row pagination-bottom">
+        <div class="col s12 center">
+            <ul class="pagination">
+                {% if posts.has_previous %}
+                <li><a href="?page={{ posts.previous_page_number }}"><i class="fas fa-chevron-left"></i></a></li>
+                {% else %}
+                <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-left"></i></a></li>
+                {% endif %}
+                {% for i in posts.paginator.page_range%}
+                {% if posts.number == i %}
+                <li class="active"><a>{{i}}</a></li>
+                {% else %}
+                <li class="waves-effect"><a href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if posts.has_next %}
+                <li><a href="?page={{ posts.next_page_number }}"><i class="fas fa-chevron-right"></i></a></li>
+                {% else %}
+                <li><a class="disabled grey-text text-darken-1"><i class="fas fa-chevron-right"></i></a></li>
                 {% endif %}
             </ul>
         </div>
