@@ -35,7 +35,7 @@ def about(request, data_type):
         paged_education = paginator.get_page(page)
         context.__setitem__('data', paged_education)
     elif data_type == 'skill':
-        data = Skill.objects.all().order_by('-scale')
+        data = Skill.objects.all().order_by('name')
         context.__setitem__('language', data.filter(language=True))
         context.__setitem__('other', data.filter(other=True))
         context.__setitem__('framework', data.filter(framework=True))
